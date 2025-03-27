@@ -30,53 +30,5 @@
     </div>
   </div>
 
-  <footer class="bg-[#000000] px-40 py-14 w-full flex flex-col text-white">
-    <div class="flex justify-between items-start w-full">
-      <div class="flex flex-col gap-4">
-        <a href="#">{{ 'contact' | translate }}</a>
-        <a href="#">{{ 'privacy_policy' | translate }}</a>
-        <a href="#">{{ 'terms' | translate }}</a>
-        <a href="#">{{ 'cookies' | translate }}</a>
-      </div>
-
-      <div class="w-[1px] h-32 my-auto bg-[#333333]">
-      </div>
-
-
-      <div class="flex flex-col gap-4">
-        <a href="#">{{ 'about' | translate }}</a>
-        <a href="#">{{ 'faq' | translate }}</a>
-        <a [routerLink]="['/' + currentLang + '/guidelines']" >{{ 'documentations' | translate }}</a>
-        <a href="#">{{ 'download' | translate }}</a>
-      </div>
-
-      <div class="bg-[#4A4A4A] rounded-[10px] w-[300px] p-4 h-[200px] flex flex-col gap-6 items-center justify-center text-center">
-        <p class="italic">{{ 'help_discord' | translate }}</p>
-        <img class="cursor-pointer" src="/logos/discord.png" width="100">
-      </div>
-
-      <div class="w-[400px] flex flex-col gap-4">
-        <p class="text-[14px]">{{ 'news_subscription' | translate }}</p>
-        <div>
-          <input class="px-4 py-2 w-[70%] outline-none text-black" type="email" placeholder="{{ 'subscribe_input_placeholder' | translate }}">
-          <button class="bg-[#9B90FF] px-4 py-2"><i class='bx bx-play' style='color:#ffffff'  ></i></button>
-        </div>
-
-        <div class="flex gap-2 items-start">
-          <input type="checkbox" class="mt-2">
-          <span class="text-[12px] m-0 p-0">{{ 'accept_terms' | translate }}</span>
-        </div>
-      </div>
-    </div>
-
-    <div class="flex items-center gap-20 mt-20">
-      <div>
-        <span class="text-[30px]">Open Voice</span>
-      </div>
-
-      <div>
-        <p class="text-[12px]">Содержимое доступно под лицензией <span class="text-[#1B1AFF] cursor-pointer">Creative Commons</span></p>
-      </div>
-    </div>
-  </footer>
+  <app-footer></app-footer>
 </div>

@@ -1,12 +1,20 @@
 import {ChangeDetectorRef, Component, Inject, OnInit, PLATFORM_ID} from '@angular/core';
-import {TranslatePipe} from "@ngx-translate/core";
+import {TranslatePipe, TranslateService} from "@ngx-translate/core";
 import {RecordService} from "../services/record.service";
 import {AudioRecorderService} from "../services/audio-recorder.service";
 import {CommonModule, isPlatformBrowser} from "@angular/common";
-import {Router} from "@angular/router";
+import {Router, RouterLink} from "@angular/router";
 import { firstValueFrom } from 'rxjs';
 import {animate, style, transition, trigger} from "@angular/animations";
 import {NavComponent} from "../common-blocks/nav/nav.component";
+import {FormsModule, ReactiveFormsModule} from "@angular/forms";
+
+const reportTypes = [
+  { key: 'offensive_language', value: 'offensive_language', description: 'offensive_language_text' },
+  { key: 'grammar_error', value: 'grammar_error', description: 'grammar_error_text' },
+  { key: 'foreign_language', value: 'foreign_language', description: 'foreign_language_text' },
+  { key: 'difficult_to_pronounce', value: 'difficult_to_pronounce', description: 'difficult_to_pronounce_text' }
+];
 
 @Component({
   selector: 'app-speak',
@@ -14,7 +22,10 @@ import {NavComponent} from "../common-blocks/nav/nav.component";
   imports: [
     TranslatePipe,
     CommonModule,
-    NavComponent
+    NavComponent,
+    RouterLink,
+    FormsModule,
+    ReactiveFormsModule
   ],
   templateUrl: './speak.component.html',
   styleUrl: './speak.component.scss',
@@ -37,8 +48,11 @@ export class SpeakComponent implements OnInit {
     private recordService: RecordService,
     private cdr: ChangeDetectorRef,
     private audioRecorderService: AudioRecorderService,
-    private router: Router
+    private router: Router,
+    private translateService: TranslateService,
   ) {}
+
+  currentLanguage: any;
 
   isModalOpen = false;
   private startTime!: number;
@@ -51,7 +65,15 @@ export class SpeakComponent implements OnInit {
   isSendDisabled = true;
   currentTextIndex = 1;
   textsQueue: any[] = [];
+
+  selectedReports: string[] = [];
+  isOtherChecked = false;
+  otherText = '';
+
   isLoading = true;
+
+  reportTypes = reportTypes;
+  isReportModalOpen = false;
 
 
   ngOnInit() {
@@ -59,6 +81,12 @@ export class SpeakComponent implements OnInit {
     if (isPlatformBrowser(this.platformId)) {
       window.addEventListener('beforeunload', this.beforeUnloadHandler);
     }
+
+    this.currentLanguage = this.translateService.currentLang;
+  }
+
+  get isSubmitEnabled(): boolean {
+    return this.selectedReports.length > 0 || (this.isOtherChecked && this.otherText.trim().length > 0);
   }
 
   ngOnDestroy() {
@@ -213,4 +241,50 @@ export class SpeakComponent implements OnInit {
       event.returnValue = 'Вы уверены? Ваш прогресс не сохранится!';
     }
   };
+
+  openReportModal() {
+    this.selectedReports = [];
+    this.isOtherChecked = false;
+    this.otherText = '';
+    this.isReportModalOpen = true;
+  }
+
+  closeReportModal() {
+    this.selectedReports = [];
+    this.isOtherChecked = false;
+    this.otherText = '';
+    this.isReportModalOpen = false;
+  }
+
+  toggleReport(type: string, event: Event) {
+    const checked = (event.target as HTMLInputElement).checked;
+    if (checked) {
+      this.selectedReports.push(type);
+    } else {
+      this.selectedReports = this.selectedReports.filter(t => t !== type);
+    }
+  }
+
+  toggleOther(event: Event) {
+    this.isOtherChecked = (event.target as HTMLInputElement).checked;
+    if (!this.isOtherChecked) {
+      this.otherText = '';
+    }
+  }
+
+  submitReport() {
+    let reportPayload = {
+      textId: this.text.id,
+      report: [...this.selectedReports]
+    };
+
+    if (this.isOtherChecked && this.otherText.trim()) {
+      reportPayload.report.push(this.otherText.trim());
+    }
+
+    if (reportPayload.report.length > 0) {
+      console.log('Отправка жалобы:', reportPayload);
+      // TODO: Отправить на сервер
+    }
+  }
 }

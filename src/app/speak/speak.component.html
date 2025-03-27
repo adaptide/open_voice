@@ -31,7 +31,7 @@
 
     <div class="flex items-center justify-between font-[500] text-[#4A4A4A] gap-20 mt-4">
       <div class="flex items-center font-[500] text-[#4A4A4A] gap-4">
-        <span *ngFor="let level of [1,2,3,4,5]" class="bg-[#FFFFFF] flex items-center justify-center w-10 h-10 p-2 rounded-[50%]"
+        <span *ngFor="let level of [1,2,3,4,5]" class="bg-[#FFFFFF] levels flex items-center justify-center w-10 h-10 p-2 rounded-[50%]"
               [class.bg-gray-300]="currentTextIndex !== level">
           {{ level }}
         </span>
@@ -50,12 +50,12 @@
 
     <div class="w-full flex justify-between items-center px-40">
       <div class="flex items-center gap-4">
-        <a (click)="skipText()" class="flex cursor-pointer items-center gap-2 border font-[500] border-[#DBDBDB] rounded-[30px] px-8 py-3">
+        <a [routerLink]="['/' + currentLanguage + '/guidelines']" class="flex cursor-pointer items-center gap-2 border font-[500] border-[#DBDBDB] rounded-[30px] px-8 py-3">
           <i class='bx bx-help-circle font-medium'></i>
           {{ 'guide' | translate }}
         </a>
 
-        <a (click)="sendRecording()" class="flex cursor-pointer font-[500] items-center gap-2 border rounded-[30px] px-8 py-3">
+        <a (click)="openReportModal()" class="flex cursor-pointer font-[500] items-center gap-2 border rounded-[30px] px-8 py-3">
           {{ 'report' | translate }}
         </a>
       </div>
@@ -83,4 +83,55 @@
     </div>
   </div>
 
+</div>
+
+<div *ngIf="isReportModalOpen" class="fixed inset-0 bg-blue-900 bg-opacity-50 flex items-start justify-center z-50 overflow-y-auto"
+     (click)="closeReportModal()">
+
+  <div class="bg-white relative flex flex-col px-40 bg-black py-10 shadow-lg w-[800px] max-h-screen overflow-y-auto mt-10"
+       (click)="$event.stopPropagation()">
+    <a href="#" class="cursor-pointer absolute top-8 text-[20px] right-8 text-[#DBDBDB]"><i class='bx bx-x'></i></a>
+
+    <div class="flex flex-col justify-center text-center w-full">
+      <h2 class="text-[30px] modal font-medium mb-2">Есептемені жіберу</h2>
+      <p class="text-gray-700 text-[20px]">Осы сөйлемде қандай қиындықтарға тап болдыңыз?</p>
+    </div>
+
+    <form (ngSubmit)="submitReport()">
+      <div class="flex flex-col gap-2 mt-4">
+        <div class="flex items-start w-full justify-between border-b py-4" *ngFor="let reportType of reportTypes">
+          <div class="flex flex-col justify-start">
+            <span>{{ 'REPORT_TYPES.' + reportType.key | translate }}</span>
+            <p *ngIf="reportType.description" class="italic text-[14px]">{{ reportType.description | translate }}</p>
+          </div>
+          <input type="checkbox" [value]="reportType.value" (change)="toggleReport(reportType.value, $event)">
+        </div>
+
+        <div class="flex flex-col gap-2 w-full">
+          <div class="flex items-start w-full justify-between py-4">
+            <div class="flex flex-col justify-start">
+              <span>{{ 'other' | translate }}</span>
+            </div>
+            <input type="checkbox" (change)="toggleOther($event)">
+          </div>
+
+          <textarea *ngIf="isOtherChecked"
+                    [(ngModel)]="otherText"
+                    [ngModelOptions]="{standalone: true}"
+                    class="w-full border border-gray-300 outline-none rounded-md p-2"
+                    placeholder="{{ 'comment' | translate }}">
+          </textarea>
+        </div>
+
+        <div class="flex justify-center mt-10">
+          <button type="submit"
+                  [class.disabled]="!isSubmitEnabled"
+                  class="bg-[#59CBB7] uppercase py-4 px-14 text-white rounded-[30px] flex items-center gap-4"
+                  [disabled]="!isSubmitEnabled">
+            Есеп <i class='bx bx-up-arrow-alt'></i>
+          </button>
+        </div>
+      </div>
+    </form>
+  </div>
 </div>

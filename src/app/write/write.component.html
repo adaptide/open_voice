@@ -1,1 +1,134 @@
 <app-nav></app-nav>
+<form [formGroup]="form" class="pt-16 px-40 body">
+  <div class="w-full flex flex-col items-center gap-4 justify-center">
+    <span class="flex items-center gap-4 text-[18px] font-[400]"><i class='bx bx-edit-alt text-[20px]' style='color:#629ff4'  ></i> {{ 'add_text_title' | translate }}</span>
+    <p class="italic">{{ 'add_text_license' | translate }}</p>
+  </div>
+
+  <div class="flex mt-6 items-start gap-10">
+    <div class="flex flex-col gap-8 w-[70%]">
+      <div class="relative w-full h-full">
+        <label class="absolute top-[-10px] left-2 text-[12px] px-2 bg-[#FFFFFF]">{{ 'sentence' | translate }}</label>
+        <textarea formControlName="sentence" placeholder="{{ 'sentence_placeholder' | translate }}" class="border-2 resize-none b-[#E6E4E1] w-full h-[200px] p-4 bg-[#FFFFFF]"></textarea>
+      </div>
+
+      <div class="relative w-full">
+        <label class="absolute z-10 top-[-10px] left-2 text-[12px] px-2 bg-[#FFFFFF]">
+          {{ 'sentence_domain' | translate }}
+        </label>
+        <div class="relative" (focusout)="onFocusOut()" (focusin)="onFocusIn()">
+          <input
+            (input)="onSearch($event)"
+            class="border-2 b-[#E6E4E1] px-6 w-full py-4"
+            placeholder="{{ 'sentence_domain_placeholder' | translate }}"
+            [value]="searchQuery"
+            [disabled]="selectedDomains.length >= 3"
+            [ngClass]="{ 'cursor-not-allowed': selectedDomains.length >= 3 }"
+          />
+
+          <div *ngIf="domainIsFocused && filteredDomains.length > 0"
+               class="absolute overflow-y-scroll max-h-[300px] z-10 w-full flex flex-col p-4 shadow-lg bg-white">
+            <button
+              (click)="selectDomain(domain)"
+              class="border-b border-black text-left py-4 last:border-b-0"
+              *ngFor="let domain of filteredDomains"
+            >
+              {{ domain?.name }}
+            </button>
+          </div>
+        </div>
+
+        <div class="flex flex-wrap gap-2 mt-2">
+    <span class="bg-[#FFFFFF] px-4 py-2 rounded-[20px] flex items-center gap-2"
+          *ngFor="let domain of selectedDomains">
+      {{ domain.name }}
+      <i (click)="removeDomain(domain)" class="bx bx-x cursor-pointer"></i>
+    </span>
+        </div>
+      </div>
+
+      <div class="relative w-full">
+        <label class="absolute top-[-10px] left-2 text-[12px] px-2 bg-[#FFFFFF]">{{ 'category' | translate }}</label>
+        <select class="border-2 b-[#E6E4E1] px-6 w-full py-4" formControlName="category_id">
+          <option value="">{{ 'category_input' | translate }}</option>
+          <option *ngFor="let category of categories" [value]="category.id">{{ category?.name }}</option>
+        </select>
+      </div>
+
+      <div class="relative w-full">
+        <label class="absolute top-[-10px] left-2 text-[12px] px-2 bg-[#FFFFFF]">{{ 'quote' | translate }}</label>
+        <input formControlName="source" class="border-2 b-[#E6E4E1] px-6 w-full py-4" placeholder="{{ 'quote_placeholder' | translate }}" />
+      </div>
+
+      <div class="w-full mt-4">
+        <button
+          (click)="isQuoteHelpOpen = !isQuoteHelpOpen"
+          class="flex items-center w-full px-4 py-2 rounded-lg transition-all duration-300"
+        >
+    <span class="border border-blue-500 h-6 transition-all duration-300"
+          [ngClass]="{'h-12': isQuoteHelpOpen}">
+    </span>
+          <span class="ml-3 font-semibold text-[#629FF4]">{{ 'how_do_i_quote' | translate }}</span>
+          <svg
+            class="w-4 h-4 ml-10 transform transition-transform duration-300"
+            [ngClass]="{'rotate-180': isQuoteHelpOpen}"
+            xmlns="http://www.w3.org/2000/svg"
+            fill="none"
+            viewBox="0 0 24 24"
+            stroke="#629FF4"
+          >
+            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 9l-7 7-7-7"/>
+          </svg>
+        </button>
+
+        <div
+          class="overflow-hidden transition-all duration-300 ease-in-out"
+          [ngStyle]="{ 'max-height': isQuoteHelpOpen ? '200px' : '0px' }"
+        >
+          <div class="p-2 rounded-lg">
+            <p>{{ 'how_do_i_quote_text' | translate }}</p>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <div class="flex flex-col justify-center items-center w-[30%] p-6 gap-4 bg-[#F3F2F1] rounded-[20px] px-6">
+        <span>Какие предложения можно добавить?</span>
+
+      <ul class="list-disc list-inside flex flex-col gap-2 mb-6">
+        <li>Нет ограничений авторского права</li>
+        <li>Менее 15 слов</li>
+        <li>Используйте правильную грамматику</li>
+        <li>Используйте правильную орфографию и пунктуацию</li>
+        <li>Без цифр и спецсимволов</li>
+        <li>Без иностранных символов</li>
+        <li>Включите соответствующую цитату</li>
+        <li>В идеале естественный и разговорный (предложение должно легко читаться)</li>
+      </ul>
+    </div>
+  </div>
+
+  <div class="flex items-center justify-between gap-6 pb-4 mt-6">
+    <div class="flex w-[70%] gap-6">
+      <a [routerLink]="['/' + currentLanguage + '/guidelines']" class="flex cursor-pointer items-center gap-2 border font-[500] border-[#DBDBDB] rounded-[30px] px-8 py-3">
+        <i class='bx bx-help-circle font-medium'></i>
+        {{ 'guide' | translate }}
+      </a>
+
+      <a class="flex cursor-pointer items-center gap-2 border font-[500] border-[#DBDBDB] rounded-[30px] px-8 py-3">
+        <i class='bx bx-paper-plane' ></i>
+        {{ 'contact_us' | translate }}
+      </a>
+    </div>
+
+
+    <div class="w-[250px] flex flex-col gap-4">
+      <div class="flex items-start gap-4">
+        <input #checkbox [disabled]="this.form.invalid" type="checkbox" class="mt-2">
+        <p class="text-[14px]">{{ 'write_policy' | translate }}</p>
+      </div>
+
+      <button [class.disabled]="this.form.invalid || !checkbox.checked" [disabled]="this.form.invalid || !checkbox.checked" (click)="submit()" class="px-10 py-4 bg-[#629FF4] text-white w-full rounded-[30px]">{{ 'send' | translate }}</button>
+    </div>
+  </div>
+</form>

@@ -4,6 +4,7 @@ import {PhrasesCollectionComponent} from "./phrases-collection/phrases-collectio
 import {NgIf} from "@angular/common";
 import {TranslatePipe, TranslateService} from "@ngx-translate/core";
 import {RouterLink} from "@angular/router";
+import {FooterComponent} from "../../common-blocks/footer/footer.component";
 
 @Component({
   selector: 'app-guidelines',
@@ -13,7 +14,8 @@ import {RouterLink} from "@angular/router";
     PhrasesCollectionComponent,
     NgIf,
     TranslatePipe,
-    RouterLink
+    RouterLink,
+    FooterComponent
   ],
   templateUrl: './guidelines.component.html',
   styleUrl: './guidelines.component.scss'

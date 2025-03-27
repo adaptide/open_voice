@@ -5,6 +5,7 @@ import {WriteComponent} from "./write/write.component";
 import {NotFoundComponent} from "./errors/not-found/not-found.component";
 import {HomeComponent} from "./static-pages/home/home.component";
 import {GuidelinesComponent} from "./static-pages/guidelines/guidelines.component";
+import {OrganizationsComponent} from "./organizations/organizations.component";
 
 export const routes: Routes = [
   { path: '', redirectTo: '/kk', pathMatch: 'full' },
@@ -16,6 +17,7 @@ export const routes: Routes = [
       { path: 'auth', loadChildren: () => import('./auth/auth.module').then(m => m.AuthModule) },
       { path: 'profile', loadChildren: () => import('./profile/profile.module').then(m => m.ProfileModule) },
       { path: 'speak', component: SpeakComponent },
+      { path: 'organizations', component: OrganizationsComponent },
       { path: 'listen', component: ListenComponent },
       { path: 'write', component: WriteComponent },
       { path: '**', component: NotFoundComponent }

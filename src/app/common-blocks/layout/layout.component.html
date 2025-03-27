@@ -13,7 +13,7 @@
         <span *ngIf="openDropdown != 'speak'" class="tooltip">{{ 'tooltip_speak' | translate }}</span>
         <div *ngIf="openDropdown === 'speak'" class="dropdown-menu">
           <a [routerLink]="['/' + currentLanguage + '/speak']" class="flex items-center gap-4"><i class='bx bx-microphone text-[16px]' style='color:#ff4f5e'  ></i> {{ 'read_sentence' | translate }}</a>
-          <a [routerLink]="['/' + currentLanguage + '/speak']" class="flex items-center gap-4"><i class='bx bx-folder' ></i>{{ 'organizations_list' | translate }}</a>
+          <a [routerLink]="['/' + currentLanguage + '/organizations']" class="flex items-center gap-4"><i class='bx bx-folder' ></i>{{ 'organizations_list' | translate }}</a>
         </div>
       </div>
 

@@ -17,6 +17,7 @@
   "speak_instruction": "Press, then read the sentence aloud",
   "listen_instruction": "Press, then listen to the sentence",
   "restart_question": "Start 5 levels again?",
+  "start": "Start",
   "restart": "Restart",
   "finish": "Finish",
   "yes": "Yes",
@@ -91,5 +92,28 @@
   "help_discord": "Help us find more people willing to record their voice!",
   "news_subscription": "Subscribe to the Open Voice newsletter, goal reminders, and progress updates",
   "subscribe_input_placeholder": "Enter your email",
-  "accept_terms": "I agree to how you process this information in accordance with the Open Voice Privacy Policy"
+  "accept_terms": "I agree to how you process this information in accordance with the Open Voice Privacy Policy",
+
+
+  "ILLUSTRATION_1_TITLE": "Let's develop the Kazakh language!",
+  "ILLUSTRATION_1_TEXT": "Record your voice and add to the open database for the Kazakh language. With your help, artificial intelligence can speak and listen to Kazakh.",
+
+  "add_text_title": "Add a sentence",
+  "add_text_license": "The sentences provided here will be added to a public dataset",
+
+
+  "how_do_i_quote": "How do I quote?",
+  "how_do_i_quote_text": "Cite with a URL or the full title of the work. If it's your own words, just say \"Self-citation.\" We need to know where you found this content so we can make sure it's in the public domain and free of copyright restrictions.",
+
+  "sentence": "Sentence",
+  "sentence_placeholder": "Type your sentence here",
+  "sentence_domain": "Sentence domain",
+  "sentence_domain_placeholder": "Select three domains that best describe your sentence",
+  "category_input": "Select a category",
+  "quote": "Quote",
+  "quote_placeholder": "Type your quote here",
+
+  "contact_us": "Contact us",
+
+  "write_policy": "* I confirm that this sentence is in the public domain and I have permission to upload it."
 }

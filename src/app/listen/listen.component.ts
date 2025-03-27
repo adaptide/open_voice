@@ -1,9 +1,9 @@
 import {ChangeDetectorRef, Component, OnInit} from '@angular/core';
-import {TranslatePipe} from "@ngx-translate/core";
+import {TranslatePipe, TranslateService} from "@ngx-translate/core";
 import {RecordService} from "../services/record.service";
 import {AudioRecorderService} from "../services/audio-recorder.service";
 import {CommonModule} from "@angular/common";
-import {Router} from "@angular/router";
+import {Router, RouterLink} from "@angular/router";
 import { firstValueFrom } from 'rxjs';
 import {animate, style, transition, trigger} from "@angular/animations";
 import {NavComponent} from "../common-blocks/nav/nav.component";
@@ -24,7 +24,8 @@ const reportTypes = [
     TranslatePipe,
     NavComponent,
     ReactiveFormsModule,
-    FormsModule
+    FormsModule,
+    RouterLink
   ],
   templateUrl: './listen.component.html',
   styleUrl: './listen.component.scss',
@@ -45,7 +46,10 @@ export class ListenComponent implements OnInit {
     private recordService: RecordService,
     private cdr: ChangeDetectorRef,
     private router: Router,
+    private translateService: TranslateService
   ) {}
+
+  currentLanguage: any;
 
   isModalOpen = false;
   audio!: HTMLAudioElement;
@@ -69,6 +73,8 @@ export class ListenComponent implements OnInit {
 
   ngOnInit() {
     this.getRandomRecord();
+
+    this.currentLanguage = this.translateService.currentLang;
   }
 
   openReportModal() {
