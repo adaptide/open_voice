@@ -1,0 +1,230 @@
+<div class="flex justify-between gap-20">
+  <aside class="w-[25%] sticky top-24 self-start">
+    <ul class="text-[24px] flex flex-col text-[#959595] gap-6 font-[700] leading-[35px]">
+      <li
+        *ngFor="let item of [
+      { id: 'different_pronunciation', label: 'Различное произношение' },
+      { id: 'offensive_content', label: 'Оскорбительное содержимое' },
+      { id: 'misreading', label: 'Неверное прочтение' },
+      { id: 'background_noise', label: 'Фоновый шум' },
+      { id: 'background_voices', label: 'Фоновые голоса' },
+      { id: 'volume', label: 'Громкость' },
+      { id: 'reading_effects', label: 'Эффекты чтения' },
+      { id: 'not_sure', label: 'Не уверены?' }
+    ]"
+        [ngClass]="{ 'border-gradient active border-gradient-purple only-top': isActive(item.id) }"
+      >
+        <a [routerLink]="[]" [fragment]="item.id" class="cursor-pointer">{{ item.label }}</a>
+      </li>
+    </ul>
+  </aside>
+
+  <div class="w-[75%] flex flex-col gap-6">
+      <div #differentPronunciation id="different_pronunciation" class="pb-10 border-b">
+        <h1 class="text-[22px] font-[600]">Различное произношение</h1>
+        <p class="mt-6">Мы приветствуем разные акценты! Будьте очень осторожны, прежде чем отклонять клип на том основании, что, по вашему мнению, читатель неправильно произнес слово, поставил ударение не в том месте или проигнорировал пунктуацию. В мире используется большое разнообразие произношений, некоторые из которых вы, возможно, не слышали в своем местном сообществе. Пожалуйста, предоставьте большую свободу действий тем, кто может говорить иначе, чем вы.</p>
+        <p class="my-6">С другой стороны, если вы считаете, что читатель никогда раньше не встречал это слово и неправильно угадывает произношение, отклоните его. Если вы не уверены, используйте кнопку пропуска.</p>
+
+        <span class="text-[#575757] font-[600]">ПРИМЕР</span>
+
+        <div class="w-full bg-[#F9F9F9] flex gap-8 mt-4 p-10">
+          <div class="bg-[#FFFFFF] p-10 w-[40%] text-center shadow-lg">
+            <p class="text-[22px]">Маршрут (route) был неясен.</p>
+          </div>
+
+          <div class="w-[60%] flex flex-col justify-between">
+              <div class="flex gap-4">
+                <div class="w-[60px] h-[60px] rounded-[50%] flex items-center justify-center bg-[#FFFFFF]">
+                  <i class='bx bx-check text-[24px]' style='color:#8cdbcd'  ></i>
+                </div>
+
+                <div class="flex flex-col">
+                  <span class="italic">Маршрут (route) был неясен.</span>
+                  <small class="text-[12px]">[В канадском английском «route» может звучать как «rowt»]</small>
+                </div>
+              </div>
+
+            <div class="flex gap-4">
+              <div class="w-[60px] h-[60px] rounded-[50%] flex items-center justify-center bg-[#FFFFFF]">
+                <i class='bx bx-check text-[24px]' style='color:#8cdbcd'  ></i>
+              </div>
+
+              <div class="flex flex-col">
+                <span class="italic">Маршрут (route) был неясен.</span>
+                <small class="text-[12px]">[В канадском английском «route» может звучать как «rowt»]</small>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+
+    <div #offensiveContent id="offensive_content" class="pb-10 border-b">
+      <h1 class="text-[22px] font-[600]">Оскорбительное содержимое</h1>
+      <p class="mt-6">Предложения проверяются в процессе модерации сообщества, однако этот процесс не идеален. Если вы видите или слышите предложение, которое вас оскорбляет или расстраивает — например, потому что оно нарушает наши <span class="text-[#1570EF]">правила участия в сообществе</span> — используйте кнопку флажка в пользовательском интерфейсе. Вы также можете связаться с нами по адресу <span class="text-[#1570EF]">openvoice&#64;gmail.com</span>.</p>
+    </div>
+
+
+    <div #misreading id="misreading" class="pb-10 border-b">
+      <h1 class="text-[22px] font-[600]">Неверное прочтение</h1>
+      <p class="mt-6">Правильное чтение всех слов на странице имеет значение. При прослушивании очень внимательно проверяйте, чтобы то, что было записано, было именно тем, что было написано; отклоняйте, если что-то было добавлено, сокращено или были пропущены слова.</p>
+      <p class="mt-6 mb-4">Среди очень частых ошибок:</p>
+      <ul class="list-disc list-inside flex flex-col gap-2 mb-6">
+        <li>Запись была включена слишком поздно, из-за чего отсутствует начало первого слова.</li>
+        <li>В творительном падеже произносится альтернативное окончание: "со мной" вместо "со мною".</li>
+        <li>Произносится слово, похожее на написанное, но отличающееся от него. Например, "вскрикнул" вместо "воскрикнул" или наоборот.</li>
+        <li>Пропуск конца последнего слова из-за преждевременного прерывания записи.</li>
+        <li>Несколько попыток прочесть слово.</li>
+      </ul>
+
+      <span class="text-[#575757] font-[600]">ПРИМЕР</span>
+
+      <div class="w-full bg-[#F9F9F9] flex items-center gap-8 mt-4 p-10">
+        <div class="bg-[#FFFFFF] p-10 w-[40%] text-center shadow-lg">
+          <p class="text-[22px]">Мы выходим за кофе.</p>
+        </div>
+
+        <div class="w-[60%] flex flex-col gap-6 justify-between">
+          <div class="flex items-center gap-4">
+            <div class="w-[60px] h-[60px] rounded-[50%] flex items-center justify-center bg-[#FFFFFF]">
+              <i class='bx bx-check text-[24px]' style='color:#8cdbcd'  ></i>
+            </div>
+
+            <div class="flex flex-col">
+              <span class="italic">Мы выходим за кофе.</span>
+            </div>
+          </div>
+
+          <div class="flex items-center gap-4">
+            <div class="w-[60px] h-[60px] rounded-[50%] flex items-center justify-center bg-[#FFFFFF]">
+              <i class='bx bx-x text-[24px]' style='color:#ff4f5e'  ></i>
+            </div>
+
+            <div class="flex flex-col">
+              <span class="italic">Мы идем пить кофе.</span>
+              <small class="text-[12px]">[Должно быть «Мы»]</small>
+            </div>
+          </div>
+
+          <div class="flex items-center gap-4">
+            <div class="w-[60px] h-[60px] rounded-[50%] flex items-center justify-center bg-[#FFFFFF]">
+              <i class='bx bx-x text-[24px]' style='color:#ff4f5e'  ></i>
+            </div>
+
+            <div class="flex flex-col">
+              <span class="italic">Мы выходим, чтобы взять кофе.</span>
+              <small class="text-[12px]">[Нет буквы "а" в исходном тексте]</small>
+            </div>
+          </div>
+
+          <div class="flex items-center gap-4">
+            <div class="w-[60px] h-[60px] rounded-[50%] flex items-center justify-center bg-[#FFFFFF]">
+              <i class='bx bx-x text-[24px]' style='color:#ff4f5e'  ></i>
+            </div>
+
+            <div class="flex flex-col">
+              <span class="italic">Мимо пронесся шмель.</span>
+              <small class="text-[12px]">[Несоответствующее содержимое]</small>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <div #background_noise id="background_noise" class="pb-10 border-b">
+      <h1 class="text-[22px] font-[600]">Фоновый шум</h1>
+      <p class="my-6">Вы должны быть в состоянии услышать каждое слово записи. Мы хотим, чтобы алгоритмы машинного обучения могли обрабатывать различные фоновые шумы, и даже относительно громкие звуки или тихая фоновая музыка могут быть приняты при условии, что они не мешают вам слышать весь текст. Потрескивания или «разрывы», которые мешают вам услышать текст, означают, что вы должны отказаться от клипа.</p>
+      <span class="text-[#575757] font-[600]">ПРИМЕР</span>
+
+      <div class="w-full bg-[#F9F9F9] flex items-center gap-8 mt-4 p-10">
+        <div class="bg-[#FFFFFF] p-10 w-[40%] text-center shadow-lg">
+          <p class="text-[22px]">Гигантские динозавры триаса.</p>
+        </div>
+
+        <div class="w-[60%] flex flex-col gap-6 justify-between">
+          <div class="flex items-center gap-4">
+            <div class="w-[60px] h-[60px] rounded-[50%] flex items-center justify-center bg-[#FFFFFF]">
+              <i class='bx bx-check text-[24px]' style='color:#8cdbcd'  ></i>
+            </div>
+
+            <div class="flex flex-col">
+              <span class="italic">Гигантские динозавры триаса.</span>
+            </div>
+          </div>
+
+          <div class="flex items-center gap-4">
+            <div class="w-[60px] h-[60px] rounded-[50%] flex items-center justify-center bg-[#FFFFFF]">
+              <i class='bx bx-x text-[24px]' style='color:#ff4f5e'  ></i>
+            </div>
+
+            <div class="flex flex-col">
+              <span class="italic">[Чих] Гигантские динозавры [кашель] триаса.</span>
+              <small class="text-[12px]">[прервано фоновым шумом]</small>
+            </div>
+          </div>
+
+          <div class="flex items-center gap-4">
+            <div class="w-[60px] h-[60px] rounded-[50%] flex items-center justify-center bg-[#FFFFFF]">
+              <i class='bx bx-x text-[24px]' style='color:#ff4f5e'  ></i>
+            </div>
+
+            <div class="flex flex-col">
+              <span class="italic">Гигантский динозавр [кашляет] триаса.</span>
+              <small class="text-[12px]">[Часть текста не слышно]</small>
+            </div>
+          </div>
+
+          <div class="flex items-center gap-4">
+            <div class="w-[60px] h-[60px] rounded-[50%] flex items-center justify-center bg-[#FFFFFF]">
+              <i class='bx bx-x text-[24px]' style='color:#ff4f5e'  ></i>
+            </div>
+
+            <div class="flex flex-col">
+              <span class="italic">[Треск] гигантские динозавры [треск] -риаса.</span>
+              <small class="text-[12px]">[Часть текста не слышно]</small>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <div #background_voices id="background_voices" class="pb-10 border-b">
+      <h1 class="text-[22px] font-[600]">Фоновые голоса</h1>
+      <p class="my-6">Небольшой фоновый шум допустим, но если вы слышите, как другой человек произносит отдельные слова, клип следует отклонить. Обычно это происходит, когда был оставлен включенным телевизор или где-то поблизости идет разговор.</p>
+      <span class="text-[#575757] font-[600]">ПРИМЕР</span>
+
+      <div class="w-full bg-[#F9F9F9] flex items-center gap-8 mt-4 p-10">
+        <div class="bg-[#FFFFFF] p-10 w-[40%] text-center shadow-lg">
+          <p class="text-[22px]">Гигантские динозавры триаса.</p>
+        </div>
+
+        <div class="w-[60%] flex flex-col gap-6 justify-between">
+          <div class="flex items-center gap-4">
+            <div class="w-[60px] h-[60px] rounded-[50%] flex items-center justify-center bg-[#FFFFFF]">
+              <i class='bx bx-check text-[24px]' style='color:#8cdbcd'  ></i>
+            </div>
+
+            <div class="flex flex-col">
+              <span class="italic">Гигантские динозавры триаса. [прочитано в один голос]</span>
+              <small class="text-[12px]">Ты идешь? [произносится другим]</small>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <div #volume id="volume" class="pb-10 border-b">
+      <h1 class="text-[22px] font-[600]">Громкость</h1>
+      <p class="mt-6">Между записями вам будет встречаться вполне естественная разница в громкости, поэтому отклоняйте по этой причине только те из них, звук в которых настолько громок, что запись ломается или (что случается чаще) если звук настолько тихий, что вы не можете разобрать ни слова без обращения к тексту.</p>
+    </div>
+
+    <div #reading_effects id="reading_effects" class="pb-10 border-b">
+      <h1 class="text-[22px] font-[600]">Эффекты чтения</h1>
+      <p class="mt-6">Большинство записей - это люди, говорящие естественным голосом. Вы можете принимать иногда встречающиеся нестандартные записи, которые кричат, шепчут или произносят явно «драматическим» голосом. Пожалуйста, не принимайте песенные записи, и записи, в которых используется голос, синтезированный на компьютере.</p>
+    </div>
+
+    <div #not_sure id="not_sure" class="pb-10">
+      <h1 class="text-[22px] font-[600]">Не уверены?</h1>
+      <p class="mt-6">Если вы столкнетесь с чем-то, что не охвачено этими рекомендациями, проголосуйте, исходя из вашего здравого смысла. Если вы действительно не можете решить, используйте кнопку пропуска и переходите к следующей записи.</p>
+    </div>
+  </div>
+</div>

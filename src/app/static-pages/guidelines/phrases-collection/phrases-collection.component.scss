@@ -1,0 +1,41 @@
+.border-gradient {
+  border: 10px solid;
+  border-image-slice: 1;
+  border-width: 5px;
+}
+.border-gradient-purple {
+  border-image-source: linear-gradient(to left, #B1B4E4, #F79096);
+}
+
+.only-top {
+  border-left: 0;
+  border-right: 0;
+  border-bottom: 0;
+}
+
+body {
+  height: 100vh;
+  margin: 0;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  > div {
+    width: 100%;
+    text-align: center;
+  }
+  > div > div {
+    width: 100%;
+    padding: 1rem;
+  }
+}
+
+.on-dark {
+  background: #222;
+  button {
+    color: white;
+  }
+}
+
+.active {
+  color: black;
+}

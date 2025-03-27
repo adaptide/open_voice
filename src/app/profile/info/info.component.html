@@ -1,0 +1,202 @@
+<div>
+  <div class="flex flex-col gap-2">
+    <h1 class="text-[30px] font-bold">{{ 'profile' | translate }}</h1>
+    <p>{{ 'profile_title_text' | translate }}</p>
+  </div>
+
+  <div class="w-full mt-6">
+    <button
+      (click)="isImportanceOpen = !isImportanceOpen"
+      class="flex items-center w-full px-4 py-2 rounded-lg transition-all duration-300"
+    >
+    <span class="border border-blue-500 h-6 transition-all duration-300"
+          [ngClass]="{'h-12': isImportanceOpen}">
+    </span>
+      <span class="ml-3 font-semibold text-[#629FF4]">{{ 'why_is_it_important' | translate }}</span>
+      <svg
+        class="w-4 h-4 ml-4 transform transition-transform duration-300"
+        [ngClass]="{'rotate-180': isImportanceOpen}"
+        xmlns="http://www.w3.org/2000/svg"
+        fill="none"
+        viewBox="0 0 24 24"
+        stroke="#629FF4"
+      >
+        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 9l-7 7-7-7"/>
+      </svg>
+    </button>
+
+    <div
+      class="overflow-hidden transition-all duration-300 ease-in-out"
+      [ngStyle]="{ 'max-height': isImportanceOpen ? '200px' : '0px' }"
+    >
+      <div class="p-2 rounded-lg">
+        <p>
+          {{ 'why_is_it_important_text' | translate }}
+        </p>
+      </div>
+    </div>
+
+    <div class="mt-6 flex flex-col gap-10">
+      <div class="flex w-full gap-4">
+        <div class="relative w-[50%]">
+          <label class="absolute top-[-18px] p-2 bg-white left-4 text-[12px]">{{ 'username' | translate }}</label>
+          <input class="border border-[#E6E4E1] w-full px-6 py-4" type="text" value="{{ currentUser?.name }}">
+        </div>
+
+        <div class="relative w-[50%]">
+          <label class="absolute top-[-18px] p-2 bg-white left-4 text-[12px]">{{ 'show_me_in_top' | translate }}</label>
+          <input class="border border-[#E6E4E1] w-full px-6 py-4" type="text">
+        </div>
+      </div>
+
+      <div class="flex w-full gap-4">
+        <div class="relative w-[50%]">
+          <label class="absolute top-[-18px] p-2 bg-white left-4 text-[12px]">{{ 'age' | translate }}</label>
+          <select class="border border-[#E6E4E1] w-full px-6 py-4" type="text">
+            <option value=""></option>
+            <option value="< 19">< 19</option>
+            <option value="< 19">19 - 29</option>
+            <option value="< 19">30 - 39</option>
+            <option value="< 19">40 - 49</option>
+            <option value="< 19">50 - 59</option>
+            <option value="< 19">60 - 69</option>
+            <option value="< 19">70 - 79</option>
+            <option value="< 19">80 - 89</option>
+            <option value="> 89">> 89</option>
+          </select>
+        </div>
+
+        <div class="relative w-[50%]">
+          <label class="absolute top-[-18px] p-2 bg-white left-4 text-[12px]">{{ 'gender' | translate }}</label>
+          <input class="border border-[#E6E4E1] w-full px-6 py-4" type="text">
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <div class="w-full mt-6">
+    <button
+      (click)="isChangeHelpOpen = !isChangeHelpOpen"
+      class="flex items-center w-full px-4 py-2 rounded-lg transition-all duration-300"
+    >
+    <span class="border border-blue-500 h-6 transition-all duration-300"
+          [ngClass]="{'h-12': isChangeHelpOpen}">
+    </span>
+      <span class="ml-3 font-semibold text-[#629FF4]">{{ 'need_change_help' | translate }}</span>
+      <svg
+        class="w-4 h-4 ml-4 transform transition-transform duration-300"
+        [ngClass]="{'rotate-180': isChangeHelpOpen}"
+        xmlns="http://www.w3.org/2000/svg"
+        fill="none"
+        viewBox="0 0 24 24"
+        stroke="#629FF4"
+      >
+        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 9l-7 7-7-7"/>
+      </svg>
+    </button>
+
+    <div
+      class="overflow-hidden transition-all duration-300 ease-in-out"
+      [ngStyle]="{ 'max-height': isChangeHelpOpen ? '200px' : '0px' }"
+    >
+      <div class="p-2 rounded-lg">
+        <p>
+          {{ 'need_change_help_text' | translate }}
+        </p>
+      </div>
+    </div>
+  </div>
+
+  <div class="mt-10 border-b pb-4">
+    <h1 class="text-[30px] font-bold">{{ 'languages' | translate }}</h1>
+
+    <div *ngFor="let form of languageForms; let i = index">
+      <form [formGroup]="form" class="border border-[#F1F0EF] mt-4 p-6 rounded-[5px] w-full flex flex-col gap-6">
+        <div class="relative w-full">
+          <label class="absolute top-[-18px] p-2 bg-white left-4 text-[12px]">{{ 'language' | translate }}</label>
+          <select
+            formControlName="language"
+            (input)="updateButtonState()"
+            class="border border-[#E6E4E1] w-full px-6 py-4"
+            type="text"
+          >
+            <option value=""></option>
+            <option value="kaz">Kazakh</option>
+          </select>
+        </div>
+
+        <div class="relative w-full">
+          <label class="absolute top-[-18px] p-2 bg-white left-4 text-[12px]">{{ 'accent_explanation' | translate }}</label>
+          <input
+            formControlName="accent"
+            class="border border-[#E6E4E1] w-full px-6 py-4"
+            type="text"
+            (input)="onAccentInputChange($event)"
+            placeholder="{{ 'accent_input_placeholder' | translate }}"
+          >
+
+          <div *ngIf="this.newAccent" class="w-full p-4 shadow-lg">
+            <button (click)="addNewAccent(i)">Добавить акцент "{{ this.newAccent }}"</button>
+          </div>
+        </div>
+
+        <div *ngIf="languageForms[i].get('accents')?.value?.length" class="flex gap-2 mt-2">
+            <span
+              class="bg-[#F3F2F0] px-4 py-2 rounded-[20px] flex items-center gap-2"
+              *ngFor="let accent of languageForms[i].get('accents')?.value"
+            >
+              {{ accent }}
+              <i (click)="removeAccent(accent, i)" class="bx bx-x cursor-pointer"></i>
+            </span>
+        </div>
+
+
+        <div class="w-full mt-4">
+          <button
+            (click)="isAccentHelpOpen = !isAccentHelpOpen"
+            class="flex items-center w-full px-4 py-2 rounded-lg transition-all duration-300"
+          >
+    <span class="border border-blue-500 h-6 transition-all duration-300"
+          [ngClass]="{'h-12': isAccentHelpOpen}">
+    </span>
+            <span class="ml-3 font-semibold text-[#629FF4]">{{ 'accent_help' | translate }}</span>
+            <svg
+              class="w-4 h-4 ml-10 transform transition-transform duration-300"
+              [ngClass]="{'rotate-180': isAccentHelpOpen}"
+              xmlns="http://www.w3.org/2000/svg"
+              fill="none"
+              viewBox="0 0 24 24"
+              stroke="#629FF4"
+            >
+              <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 9l-7 7-7-7"/>
+            </svg>
+          </button>
+
+          <div
+            class="overflow-hidden transition-all duration-300 ease-in-out"
+            [ngStyle]="{ 'max-height': isAccentHelpOpen ? '200px' : '0px' }"
+          >
+            <div class="p-2 rounded-lg">
+              <p>{{ 'accent_help_text' | translate }}</p>
+            </div>
+          </div>
+        </div>
+      </form>
+    </div>
+
+    <button
+      [disabled]="!canAddLanguage()"
+      (click)="addLanguageForm()"
+      class="flex items-center gap-2 px-8 py-3 font-[500] border border-[#E3E3E3] mt-4 hover:border-[#000] transition-all duration-300 rounded-[5px] disabled:opacity-50 disabled:cursor-not-allowed"
+    >
+      {{ 'add_language' | translate }} <i class='bx bx-plus text-[18px]'></i>
+    </button>
+
+    <p class="mt-2">{{ 'your_lang_not_in_language_text' | translate }} <a href="#" class="italic text-[#629FF4]">{{ 'request_your_language' | translate }}</a></p>
+  </div>
+
+  <div class="flex justify-center mt-6">
+    <button class="bg-black border border-[#000] text-white py-4 px-24 rounded-[30px] hover:bg-white hover:text-black transition-all duration-300">{{ 'save' | translate }}</button>
+  </div>
+
+</div>

@@ -1,0 +1,31 @@
+<div class="container">
+  <div class="login_form">
+    <form action="#" [formGroup]="form" (ngSubmit)="onSubmit()">
+      <div class="input_box">
+        <label for="email">Имя</label>
+        <input type="text" formControlName="name" id="name" placeholder="Введите имя" required />
+      </div>
+      <div class="input_box">
+        <label for="email">Email</label>
+        <input type="email" formControlName="email" id="email" placeholder="Введите адрес электронной почты" required />
+      </div>
+      <div class="input_box">
+        <div class="password_title">
+          <label for="password">Пароль</label>
+          <a href="#">Забыли пароль?</a>
+        </div>
+        <input type="password" formControlName="password" id="password" placeholder="Введите ваш пароль" required />
+      </div>
+
+      <div class="input_box">
+        <div class="password_title">
+          <label for="password">Подтвердите пароль</label>
+        </div>
+        <input type="password" formControlName="password_confirmation" id="password_confirmation" placeholder="Подтвердите ваш пароль" required />
+      </div>
+      <button type="submit">Войти</button>
+      <p class="sign_up">У вас уже есть аккаунт? <a [routerLink]="['/' + currentLanguage + '/auth/login']">Войти</a></p>
+    </form>
+  </div>
+
+</div>

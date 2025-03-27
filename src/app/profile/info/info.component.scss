@@ -1,0 +1,11 @@
+.disabled {
+  pointer-events: none;
+  opacity: 0.5;
+}
+
+select {
+  -webkit-appearance: none;
+  -moz-appearance: none;
+  appearance: none;
+  background-image: none !important;
+}

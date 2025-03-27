@@ -1,0 +1,38 @@
+<div class="container">
+  <div class="login_form">
+    <form action="#" [formGroup]="form" (ngSubmit)="onSubmit()">
+      <h3>Войти с помощью</h3>
+      <div class="login_option">
+        <div class="option">
+          <a href="#">
+            <img src="./logos/google.png" alt="Google" />
+            <span>Google</span>
+          </a>
+        </div>
+        <div class="option">
+          <a href="#">
+            <img src="./logos/facebook.png" alt="Apple" />
+            <span>Facebook</span>
+          </a>
+        </div>
+      </div>
+      <p class="separator">
+        <span>ИЛИ</span>
+      </p>
+      <div class="input_box">
+        <label for="email">Email</label>
+        <input type="email" formControlName="email" id="email" placeholder="Введите адрес электронной почты" required />
+      </div>
+      <div class="input_box">
+        <div class="password_title">
+          <label for="password">Пароль</label>
+          <a href="#">Забыли пароль?</a>
+        </div>
+        <input type="password" formControlName="password" id="password" placeholder="Введите ваш пароль" required />
+      </div>
+      <button type="submit">Войти</button>
+      <p class="sign_up">У вас еще нет аккаунта? <a [routerLink]="['/' + currentLanguage + '/auth/register']">Регистрация</a></p>
+    </form>
+  </div>
+
+</div>
