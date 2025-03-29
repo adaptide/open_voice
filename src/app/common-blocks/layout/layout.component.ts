@@ -90,7 +90,7 @@ export class LayoutComponent implements OnInit{
 
   logout() {
     this.authService.logout().subscribe(() => {
-      this.router.navigate(['/kk/auth/login']);
+      this.router.navigate(['/' + this.currentLanguage + '/auth/login']);
     });
   }
 }

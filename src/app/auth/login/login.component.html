@@ -21,14 +21,22 @@
       </p>
       <div class="input_box">
         <label for="email">Email</label>
-        <input type="email" formControlName="email" id="email" placeholder="Введите адрес электронной почты" required />
+        <input [class.error-border]="form.get('email')?.invalid && form.get('email')?.touched" type="email" formControlName="email" id="email" placeholder="Введите адрес электронной почты" required />
+        <div *ngIf="form.get('email')?.invalid && form.get('email')?.touched" class="text-left flex justify-start">
+          <p class="error-text" *ngIf="form.get('email')?.errors?.['required']">Поле обязательно для заполнения</p>
+          <p class="error-text" *ngIf="form.get('email')?.errors?.['email']">Введите корректный email</p>
+        </div>
       </div>
       <div class="input_box">
         <div class="password_title">
           <label for="password">Пароль</label>
           <a href="#">Забыли пароль?</a>
         </div>
-        <input type="password" formControlName="password" id="password" placeholder="Введите ваш пароль" required />
+        <input [class.error-border]="form.get('password')?.invalid && form.get('password')?.touched" type="password" formControlName="password" id="password" placeholder="Введите ваш пароль" required />
+        <div *ngIf="form.get('password')?.invalid && form.get('password')?.touched" class="text-left flex justify-start">
+          <p class="error-text" *ngIf="form.get('password')?.errors?.['required']">Поле обязательно для заполнения</p>
+          <p class="error-text" *ngIf="form.get('password')?.errors?.['minlength']">Минимальная длина пароля 6 символов</p>
+        </div>
       </div>
       <button type="submit">Войти</button>
       <p class="sign_up">У вас еще нет аккаунта? <a [routerLink]="['/' + currentLanguage + '/auth/register']">Регистрация</a></p>

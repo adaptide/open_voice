@@ -1,0 +1,88 @@
+<div class="px-40 py-10">
+  <div class="flex justify-between">
+    <div class="flex flex-col">
+      <h1 class="text-[36px] font-[500]">Ваши организации</h1>
+      <p class="text-[18px] mt-2">Список всех проектов.</p>
+    </div>
+  </div>
+
+  <div class="flex flex-col">
+    <div class="flex justify-between mt-10">
+      <div class="flex flex-col">
+        <h1 class="text-[36px] font-[500]">
+          Проекты <span *ngIf="searchQuery">({{ filteredProjects.length }})</span>
+        </h1>
+      </div>
+
+      <div class="flex flex-col gap-4 items-end relative">
+        <i class="bx bx-search absolute right-4 text-[20px] top-3"></i>
+        <input
+          [(ngModel)]="searchQuery"
+          (input)="onSearchChange()"
+          placeholder="Поиск"
+          class="py-2 px-8 border bg-[#F9F9F9] font-[600] rounded-[30px] w-fit outline-none"
+        />
+      </div>
+    </div>
+
+    <div class="mt-8">
+      <p class="text-[18px] w-[600px]">Список проектов, к которым у вас есть доступ.</p>
+    </div>
+
+
+    <div class="flex flex-wrap gap-4 mt-6 justify-between">
+      <div *ngFor="let project of filteredProjects" class="flex flex-col justify-between shadow-md w-[380px]">
+        <div class="flex flex-col justify-between p-8">
+          <div>
+            <h3 class="text-[22px] font-[600]">{{ project.name }}</h3>
+          </div>
+
+          <div class="flex items-center gap-14 mt-4">
+            <div>
+              <div class="flex text-[14px] items-center text-[#575757] gap-2">
+                <i class='bx bx-folder text-[18px]' ></i>
+                Проектов
+              </div>
+              <span class="number text-[26px]">254</span>
+            </div>
+
+            <div>
+              <div class="flex text-[14px] items-center text-[#575757] gap-2">
+                <svg class="DataItemHeadingIcon--tW9fa" width="13" height="13" viewBox="0 0 13 13" xmlns="http://www.w3.org/2000/svg"><path d="M7.9 8.5c-.2.1-.2.4 0 .5l.2.5-.2.5c-.2.1-.2.3 0 .5l.2.1.3-.1a1.4 1.4 0 0 0 0-2 .4.4 0 0 0-.5 0ZM9.4 7.2v.6a2.4 2.4 0 0 1 0 3.4v.5l.3.2s.2 0 .3-.2a3.2 3.2 0 0 0 0-4.5.4.4 0 0 0-.6 0Z"></path><path d="M11.6 6.1a.4.4 0 0 0-.6 0v.5a4 4 0 0 1 0 5.7v.6h.6a4.8 4.8 0 0 0 0-6.8ZM8 6.5c0-.3 0-.5-.3-.7l-1.1-.6C6 2.2 3.4.2.4 0 .2 0 0 .2 0 .4s.2.4.4.4c2.6 0 5 2.1 5.5 4.7l.1.3 1.3.7-1.2.7-.2.3-.2.7H3.2c-.2 0-.4.1-.4.4A3 3 0 0 0 4 10.9c-1 .8-2.2 1.3-3.5 1.3-.2 0-.4.2-.4.4s.2.4.4.4c1.6 0 3.2-.7 4.4-1.9v-.3l-.1-.3c-.6-.3-1-1-1-1.6H6c.1 0 .3 0 .3-.2l.3-1 1-.6c.3 0 .5-.3.5-.6Z"></path><path d="M3.1 5.5h.4l.1-.3V4.9a.4.4 0 0 0-.5 0H3l-.1.3v.2l.2.1Z"></path></svg>
+                Пользователей
+              </div>
+              <span class="number text-[26px]">27</span>
+            </div>
+          </div>
+
+
+          <div class="flex items-center gap-14 mt-4">
+            <div>
+              <div class="flex text-[14px] items-center text-[#575757] gap-2">
+                <i class='bx bx-timer text-[20px]' ></i>
+                Прогресс
+              </div>
+              <span class="number text-[26px]">60%</span>
+              <div class="bg-[#E7E5E2] w-full h-[8px] relative">
+                <div class="bg-[#629FF4] h-full w-[60%] absolute left-0 top-0"></div>
+              </div>
+            </div>
+
+            <div>
+              <div class="flex text-[14px] items-center text-[#575757] gap-2">
+                <svg class="DataItemHeadingIcon--tW9fa" width="13" height="13" viewBox="0 0 13 13" xmlns="http://www.w3.org/2000/svg"><path d="M5.8 2.3h5.6a.4.4 0 1 0 0-.8H5.8a.4.4 0 1 0 0 .8ZM7.2 10.7H.4a.4.4 0 1 0 0 .8h6.8a.4.4 0 1 0 0-.8ZM.4 5.4H10a.4.4 0 1 0 0-.8H.4c-.2 0-.4.2-.4.4s.2.4.4.4ZM0 8c0 .2.2.4.4.4h12.2a.4.4 0 1 0 0-.8H.4c-.2 0-.4.2-.4.4ZM9.8 10.7H9a.4.4 0 1 0 0 .8h.7c.1.2.1.6-.1.8-.2.2-.2.4 0 .6l.2.1.3-.1c.6-.6.6-1.5 0-2.1l-.3-.1ZM12.3 10.7h-.9a.4.4 0 1 0 0 .8h.7c.2.2.2.6 0 .8-.2.2-.2.4 0 .6l.2.1.3-.1c.6-.6.5-1.5 0-2.1l-.3-.1ZM3.2 2.3H4a.4.4 0 1 0 0-.8h-.7a.7.7 0 0 1 .1-.8c.2-.2.2-.4 0-.6a.4.4 0 0 0-.5 0c-.6.6-.6 1.5 0 2.1l.3.1ZM.7 2.3h.9a.4.4 0 1 0 0-.8H.9a.7.7 0 0 1 0-.8c.2-.2.2-.4 0-.6a.4.4 0 0 0-.5 0C0 .7 0 1.6.4 2.2l.3.1Z"></path></svg>
+                Предложения
+              </div>
+              <span class="number text-[26px]">14212</span>
+            </div>
+          </div>
+        </div>
+        <div (click)="downloadProjectRecords(project.id, project.name)"
+             class="w-full flex justify-center cursor-pointer p-4 bg-[#F9F8F7] hover:bg-[#E7E5E2] transition-colors duration-300">
+          <button *ngIf="!loadingMap[project.id]" class="uppercase font-[600]">Скачать</button>
+          <div *ngIf="loadingMap[project.id]" class="loader"></div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>

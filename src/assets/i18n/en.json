@@ -75,7 +75,7 @@
   "check_pronunciation": "Check pronunciation",
   "add_sentence": "Add a sentence",
 
-  "community_and_languages": "Community and languages",
+  "why_us": "Why Open Voice ?",
   "organizations_list": "Organizations list",
   "categories": "Categories",
 
@@ -115,5 +115,30 @@
 
   "contact_us": "Contact us",
 
-  "write_policy": "* I confirm that this sentence is in the public domain and I have permission to upload it."
+  "write_policy": "* I confirm that this sentence is in the public domain and I have permission to upload it.",
+
+
+  "profile_download_title": "Do you want to download your data?",
+  "profile_download_text": "Let us know if you want to download:",
+
+  "profile_info_download_text": "Includes email, username, and demographic information. Available now.",
+
+  "download_personal_info": "Download profile data",
+
+  "entries": "Entries",
+
+  "entries_download_text": "Includes mp3 and related sentences. May take some time to prepare.",
+
+  "download_personal_audios": "Download audio",
+  "download_bytes": "A few bytes",
+  "download_mb": "Usually megabytes",
+
+  "profile_delete_title": "Do you want your voice recordings to be removed as well, or do you want to keep them in the Open Voice dataset?*",
+
+  "required_field": "required field",
+  "delete": "Delete",
+  "leave": "Leave",
+  "leave_info": "Your anonymous voice recordings will remain in the Open Voice dataset. After deleting your profile, you will no longer be able to submit a request to remove your recordings from the dataset",
+  "delete_info": "We will review your request to remove your voice recordings from the dataset. If your request is approved, we will contact those who uploaded the dataset and ask them to remove your voice recordings.",
+  "delete_account": "Delete account"
 }

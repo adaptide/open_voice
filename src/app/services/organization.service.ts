@@ -11,4 +11,12 @@ export class OrganizationService {
   getOrganizationList(){
     return this.api.get('/organizations');
   }
+
+  getOrganizationProjects(id: any){
+    return this.api.get(`/organizations/${id}/projects`);
+  }
+
+  downloadProjectRecords(id: any) {
+    return this.api.getBlob(`/projects/download-as-zip/${id}`);
+  }
 }

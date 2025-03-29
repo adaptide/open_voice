@@ -2,8 +2,8 @@
   <div class="flex justify-between items-start w-full">
     <div class="flex flex-col gap-4">
       <a href="#">{{ 'contact' | translate }}</a>
-      <a href="#">{{ 'privacy_policy' | translate }}</a>
-      <a href="#">{{ 'terms' | translate }}</a>
+      <a [routerLink]="['/' + currentLanguage + '/policy']">{{ 'privacy_policy' | translate }}</a>
+      <a [routerLink]="['/' + currentLanguage + '/terms']">{{ 'terms' | translate }}</a>
       <a href="#">{{ 'cookies' | translate }}</a>
     </div>
 
@@ -12,7 +12,7 @@
 
 
     <div class="flex flex-col gap-4">
-      <a href="#">{{ 'about' | translate }}</a>
+      <a [routerLink]="['/' + currentLanguage + '/about']">{{ 'about' | translate }}</a>
       <a href="#">{{ 'faq' | translate }}</a>
       <a [routerLink]="['/' + currentLanguage + '/guidelines']" >{{ 'documentations' | translate }}</a>
       <a href="#">{{ 'download' | translate }}</a>

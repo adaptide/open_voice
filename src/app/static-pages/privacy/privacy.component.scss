@@ -1,0 +1,21 @@
+.header {
+  background-image: url("/wave.svg");
+  background-size: cover;
+  background-position: center;
+  width: 100%;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  height: 500px;
+  @apply px-40 pt-20;
+
+  h1 {
+    @apply text-6xl font-[500] text-black;
+  }
+
+  p {
+    margin-top: 20px;
+    width: 800px;
+    font-size: 24px;
+  }
+}

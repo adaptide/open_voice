@@ -48,8 +48,7 @@
         </a>
         <span *ngIf="openDropdown != 'about'" class="tooltip">{{ 'tooltip_about' | translate }}</span>
         <div *ngIf="openDropdown === 'about'" class="dropdown-menu">
-          <a class="flex items-center gap-4"><i class='bx bx-world' ></i> {{ 'community_and_languages' | translate }}</a>
-          <a href="#">Опция 2</a>
+          <a [routerLink]="['/' + currentLanguage + '/about']" class="flex items-center gap-4"><i class='bx bx-world' ></i> {{ 'why_us' | translate }}</a>
         </div>
       </div>
     </div>

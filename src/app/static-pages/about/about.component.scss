@@ -1,0 +1,33 @@
+.header {
+  background-color: #F9F9F7;
+  background-size: cover;
+  background-position: center;
+  width: 100%;
+  display: flex;
+  justify-content: space-between;
+  height: 600px;
+  @apply pl-40 pt-20;
+
+  h1 {
+    @apply text-5xl font-[500] text-black;
+  }
+
+  p {
+    color: #4A4A4A;
+    margin-top: 20px;
+    width: 600px;
+    font-size: 18px;
+  }
+}
+
+.how-it-works {
+  background-image: url("/about-number.svg");
+  background-repeat: no-repeat;
+  background-position: center center;
+  background-size: contain;
+  font-family: "Open Sans", sans-serif !important;
+  color: #1570EF;
+  font-weight: bold;
+
+  font-size: 26px;
+}

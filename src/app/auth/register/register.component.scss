@@ -94,8 +94,8 @@ form .input_box input {
   background: #F8F8FB;
   font-size: 17px;
   padding: 0px 20px;
-  margin-bottom: 25px;
   transition: 0.2s ease;
+  margin-bottom: 5px;
 }
 form .input_box input:focus {
   border-color: #626cd6;
@@ -107,6 +107,7 @@ form .input_box .password_title {
 }
 form .input_box {
   position: relative;
+  margin-bottom: 20px;
 }
 a {
   text-decoration: none;
@@ -133,4 +134,13 @@ form button {
 }
 form button:hover {
   background: #4954d0;
+}
+
+.error-text {
+  font-size: 14px;
+  color: red;
+}
+
+.error-border {
+  border-color: red !important;
 }

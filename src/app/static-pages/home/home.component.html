@@ -6,14 +6,14 @@
         <div class="absolute bottom-0 left-0 h-[5px] bg-[#1B1AFF] w-full animate-slide"></div>
       </div>
       <p>{{ 'ILLUSTRATION_1_TEXT' | translate }}</p>
-      <button class="bg-[#9B90FF] px-10 text-white flex justify-center text-[18px] font-[500] items-center gap-4 py-3 rounded-[30px] text-center w-[200px]">{{ 'start' | translate }} <i class='bx bx-down-arrow-alt' style='color:#ffffff' ></i></button>
+      <button [routerLink]="['/' + currentLanguage + '/speak']" class="bg-[#9B90FF] px-10 text-white flex justify-center text-[18px] font-[500] items-center gap-4 py-3 rounded-[30px] text-center w-[200px]">{{ 'start' | translate }} <i class='bx bx-down-arrow-alt' style='color:#ffffff' ></i></button>
     </div>
 
     <div class="flex w-[60%] justify-end relative">
       <img src="/illustration.svg" width="600">
 
       <span [routerLink]="['/' + currentLanguage + '/listen']" class="w-[80px] h-[80px] cursor-pointer top-[-20px] left-32 bg-white text-center rounded-[50%] shadow-lg flex justify-center items-center absolute"><i class='bx bx-play text-[40px]' style="color: #59cbb7"></i></span>
-      <span [routerLink]="['/' + currentLanguage + '/listen']" class="w-[80px] h-[80px] cursor-pointer bottom-[-20px] left-[50%] bg-white text-center rounded-[50%] shadow-lg flex justify-center items-center absolute"><i class='bx bx-microphone text-[36px]' style='color:#ff4f5e'  ></i></span>
+      <span [routerLink]="['/' + currentLanguage + '/speak']" class="w-[80px] h-[80px] cursor-pointer bottom-[-20px] left-[50%] bg-white text-center rounded-[50%] shadow-lg flex justify-center items-center absolute"><i class='bx bx-microphone text-[36px]' style='color:#ff4f5e'  ></i></span>
     </div>
   </section>
 
@@ -33,7 +33,7 @@
           <li>Ашық және қолжетімді дерекқор жасайды.</li>
         </ul>
       </div>
-      <button class="bg-[#9B90FF] px-10 text-white flex justify-center text-[18px] font-[500] items-center gap-4 py-3 rounded-[30px] text-center w-[300px]">Мәліметтерді қараңыз</button>
+      <button [routerLink]="['/' + currentLanguage + '/about']" class="bg-[#9B90FF] px-10 text-white flex justify-center text-[18px] font-[500] items-center gap-4 py-3 rounded-[30px] text-center w-[300px]">Мәліметтерді қараңыз</button>
     </div>
   </section>
 

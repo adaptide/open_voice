@@ -209,7 +209,9 @@ export class SpeakComponent implements OnInit {
   }
 
   skipText() {
-    this.showNextText();
+    this.recordService.skipSpeakText(this.text.id).subscribe(() => {
+      this.showNextText();
+    });
   }
 
   nextLevel() {
@@ -274,7 +276,6 @@ export class SpeakComponent implements OnInit {
 
   submitReport() {
     let reportPayload = {
-      textId: this.text.id,
       report: [...this.selectedReports]
     };
 
@@ -284,7 +285,9 @@ export class SpeakComponent implements OnInit {
 
     if (reportPayload.report.length > 0) {
       console.log('Отправка жалобы:', reportPayload);
-      // TODO: Отправить на сервер
+      this.recordService.sendSpeakReport(this.text.id, reportPayload).subscribe((response) => {
+        console.log(response);
+      });
     }
   }
 }

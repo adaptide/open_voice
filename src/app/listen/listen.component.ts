@@ -173,7 +173,9 @@ export class ListenComponent implements OnInit {
   }
 
   skipText() {
-    this.getRandomRecord();
+    this.recordService.skipListenText(this.text.id).subscribe(() => {
+      this.getRandomRecord();
+    });
   }
 
   nextLevel() {
@@ -230,7 +232,9 @@ export class ListenComponent implements OnInit {
 
     if (reportPayload.report.length > 0) {
       console.log('Отправка жалобы:', reportPayload);
-      // TODO: Отправить на сервер
+      this.recordService.sendListenReport(this.text.id, reportPayload).subscribe((response) => {
+        console.log(response);
+      });
     }
   }
 }

@@ -16,17 +16,32 @@ export class RecordService {
     return this.api.get('/sentences?count=25');
   }
 
+  sendRecord(data: any) {
+    console.log('Sending recording:', data);
+    return this.http.post(`${this.apiBase}/sentences`, data);
+  }
+
+  skipSpeakText(id: any) {
+    return this.api.post(`/sentences/${id}/skipped`);
+  }
+
+  sendSpeakReport(id: any, data: any) {
+    return this.http.post(`${this.apiBase}/sentences/${id}/reports`, data);
+  }
+
   getRandomRecord() {
     return this.api.get("/clips");
   }
 
-  sendRecord(data: any) {
-    console.log('Sending recording:', data);
-    return this.http.post(`${this.apiBase}/recordings`, data);
+  sendEvaluation(recordId: any, data: any) {
+    return this.http.post(`${this.apiBase}/clips/${recordId}/reviews`, data);
   }
 
-  sendEvaluation(recordId: any, data: any) {
-    console.log('Sending evaluation:', data);
-    return this.http.post(`${this.apiBase}/recordings/${recordId}/reviews`, data);
+  sendListenReport(id: any, data: any) {
+    return this.http.post(`${this.apiBase}/clips/${id}/reports`, data);
+  }
+
+  skipListenText(id: any) {
+    return this.api.post(`/clips/${id}/skipped`);
   }
 }

@@ -1,0 +1,53 @@
+<div>
+  <div class="flex flex-col gap-2">
+    <h1 class="text-[30px] font-bold">{{ 'profile_download_title' | translate }}</h1>
+    <p>{{ 'profile_download_text' | translate }}</p>
+  </div>
+
+  <div class="border-y mt-10 p-8 w-[950px]">
+    <div class="flex items-center justify-between">
+      <div class="flex items-center gap-8">
+        <i class='bx bx-user text-[28px]'></i>
+        <div class="flex flex-col w-[300px]">
+          <span class="text-[18px] font-[500]">{{ 'profile' | translate }}</span>
+          <p>{{ 'profile_info_download_text' | translate }}</p>
+        </div>
+      </div>
+
+      <div>
+        <p>{{ 'download_bytes' | translate }}</p>
+      </div>
+
+      <div>
+        <button (click)="downloadUserInfo()" class="bg-[#629FF4] w-[250px] px-6 py-4 rounded-[40px] text-white font-[500]
+         hover:bg-white hover:text-[#629FF4] hover:border-[#629FF4] border border-transparent
+         transition-all duration-300">{{ 'download_personal_info' | translate }}</button>
+      </div>
+    </div>
+  </div>
+
+  <div class="border-y p-8 w-[950px]">
+    <div class="flex items-center justify-between">
+      <div class="flex items-center gap-8">
+        <i class='bx bx-microphone text-[32px]' ></i>
+        <div class="flex flex-col w-[300px]">
+          <span class="text-[18px] font-[500]">{{ 'entries' | translate }}</span>
+          <p>{{ 'entries_download_text' | translate }}</p>
+        </div>
+      </div>
+
+      <div>
+        <p>{{ 'download_mb' | translate }}</p>
+      </div>
+
+      <div>
+        <button
+          class="bg-[#629FF4] w-[250px] px-6 py-4 rounded-[40px] text-white font-[500]
+         hover:bg-white hover:text-[#629FF4] hover:border-[#629FF4] border border-transparent
+         transition-all duration-300">{{ 'download_personal_audios' | translate }}
+        </button>
+      </div>
+    </div>
+  </div>
+
+</div>

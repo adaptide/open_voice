@@ -1,29 +1,49 @@
 <div class="container">
   <div class="login_form">
-    <form action="#" [formGroup]="form" (ngSubmit)="onSubmit()">
+    <form [formGroup]="form" (ngSubmit)="onSubmit()">
       <div class="input_box">
-        <label for="email">Имя</label>
-        <input type="text" formControlName="name" id="name" placeholder="Введите имя" required />
+        <label for="name">Имя</label>
+        <input [class.error-border]="form.get('name')?.invalid && form.get('name')?.touched" type="text" formControlName="name" id="name" placeholder="Введите имя" required />
+        <div *ngIf="form.get('name')?.invalid && form.get('name')?.touched" class="text-left flex justify-start">
+          <p class="error-text" *ngIf="form.get('name')?.errors?.['required']">Поле обязательно для заполнения</p>
+        </div>
       </div>
+
       <div class="input_box">
         <label for="email">Email</label>
-        <input type="email" formControlName="email" id="email" placeholder="Введите адрес электронной почты" required />
+        <input [class.error-border]="form.get('email')?.invalid && form.get('email')?.touched" type="email" formControlName="email" id="email" placeholder="Введите адрес электронной почты" required />
+        <div *ngIf="form.get('email')?.invalid && form.get('email')?.touched" class="text-left flex justify-start">
+          <p class="error-text" *ngIf="form.get('email')?.errors?.['required']">Поле обязательно для заполнения</p>
+          <p class="error-text" *ngIf="form.get('email')?.errors?.['email']">Введите корректный email</p>
+        </div>
       </div>
+
       <div class="input_box">
         <div class="password_title">
           <label for="password">Пароль</label>
           <a href="#">Забыли пароль?</a>
         </div>
-        <input type="password" formControlName="password" id="password" placeholder="Введите ваш пароль" required />
+        <input [class.error-border]="form.get('password')?.invalid && form.get('password')?.touched" type="password" formControlName="password" id="password" placeholder="Введите ваш пароль" required />
+        <div *ngIf="form.get('password')?.invalid && form.get('password')?.touched" class="text-left flex justify-start">
+          <p class="error-text" *ngIf="form.get('password')?.errors?.['required']">Поле обязательно для заполнения</p>
+          <p class="error-text" *ngIf="form.get('password')?.errors?.['minlength']">Минимальная длина пароля 6 символов</p>
+        </div>
       </div>
 
       <div class="input_box">
         <div class="password_title">
-          <label for="password">Подтвердите пароль</label>
+          <label for="password_confirmation">Подтвердите пароль</label>
         </div>
-        <input type="password" formControlName="password_confirmation" id="password_confirmation" placeholder="Подтвердите ваш пароль" required />
+        <input [class.error-border]="form.get('password_confirmation')?.invalid && form.get('password_confirmation')?.touched" type="password" formControlName="password_confirmation" id="password_confirmation" placeholder="Подтвердите ваш пароль" required />
+        <div *ngIf="form.get('password_confirmation')?.invalid && form.get('password_confirmation')?.touched" class="text-left flex justify-start">
+          <p class="error-text" *ngIf="form.get('password_confirmation')?.errors?.['required']">Поле обязательно для заполнения</p>
+        </div>
+        <div *ngIf="form.errors?.['passwordMismatch'] && form.touched" class="text-left flex justify-start">
+          <p class="error-text">Пароли не совпадают</p>
+        </div>
       </div>
-      <button type="submit">Войти</button>
+
+      <button type="submit">Регистрация</button>
       <p class="sign_up">У вас уже есть аккаунт? <a [routerLink]="['/' + currentLanguage + '/auth/login']">Войти</a></p>
     </form>
   </div>
