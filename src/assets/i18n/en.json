@@ -140,5 +140,8 @@
   "leave": "Leave",
   "leave_info": "Your anonymous voice recordings will remain in the Open Voice dataset. After deleting your profile, you will no longer be able to submit a request to remove your recordings from the dataset",
   "delete_info": "We will review your request to remove your voice recordings from the dataset. If your request is approved, we will contact those who uploaded the dataset and ask them to remove your voice recordings.",
-  "delete_account": "Delete account"
+  "delete_account": "Delete account",
+
+  "text_not_found": "No texts available",
+  "record_not_found": "No records available"
 }

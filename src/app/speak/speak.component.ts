@@ -57,6 +57,7 @@ export class SpeakComponent implements OnInit {
   isModalOpen = false;
   private startTime!: number;
   private autoStopTimeout!: any;
+  not_found: any;
 
   text: any;
   showText = true;
@@ -97,18 +98,26 @@ export class SpeakComponent implements OnInit {
 
   async getRandomTexts() {
     this.isLoading = true;
+    this.not_found = ''; // Сбрасываем сообщение перед загрузкой
     try {
       const response: any = await firstValueFrom(this.recordService.getRandomText());
 
       if (response?.data?.length > 0) {
         this.textsQueue = this.shuffleArray(response.data);
         this.showNextText();
-        this.isLoading = false;
       } else {
-        console.error('Нет доступных текстов.');
+        this.not_found = 'Нет доступных текстов';
+        console.warn(this.not_found);
       }
-    } catch (error) {
-      console.error('Ошибка загрузки текстов:', error);
+    } catch (error: any) {
+      if (error?.status === 404 || error?.status === 204) {
+        this.not_found = 'Нет доступных текстов';
+        console.warn(this.not_found);
+      } else {
+        console.error('Ошибка загрузки текстов:', error);
+      }
+    } finally {
+      this.isLoading = false;
     }
   }
 

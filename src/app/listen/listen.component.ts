@@ -69,6 +69,7 @@ export class ListenComponent implements OnInit {
   otherText = '';
 
   isLoading = true;
+  not_found: any;
 
   reportTypes = reportTypes;
 
@@ -101,6 +102,8 @@ export class ListenComponent implements OnInit {
         this.isFetching = false;
 
         if (!response || response.length === 0) {
+          this.not_found = 'Нет доступных записей';
+          console.log(this.not_found);
           console.warn("Нет доступных записей");
           this.text = null;
           return;

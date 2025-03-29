@@ -27,11 +27,12 @@
       <div *ngIf="showText" class="text-screen text-center bg-[#FFFFFF] overflow-x-hidden w-[50%] h-[250px] flex justify-center items-center
        shadow-lg"
            @textSwitch>
-        <p class="text-[24px]">{{ text?.text }}</p>
+        <p *ngIf="!this.not_found" class="text-[24px]">{{ text?.text }}</p>
+        <p *ngIf="this.not_found" class="text-[24px]">{{ 'record_not_found' | translate }}</p>
       </div>
     </div>
 
-    <div class="flex items-center justify-between font-[500] text-[#4A4A4A] gap-20 mt-4">
+    <div *ngIf="!this.not_found" class="flex items-center justify-between font-[500] text-[#4A4A4A] gap-20 mt-4">
       <div class="flex items-center font-[500] text-[#4A4A4A] gap-4">
         <span *ngFor="let level of [1,2,3,4,5]" class="bg-[#FFFFFF] levels flex items-center justify-center w-10 h-10 p-2 rounded-[50%]"
               [class.bg-gray-300]="currentTextIndex !== level">
@@ -43,13 +44,17 @@
     <div class="w-full flex items-center justify-center mt-6 gap-10">
       <a
         (click)="submitEvaluation(true)"
-        [class.cursor-not-allowed]="isSendDisabled"
-        [class.pointer-events-none]="isSendDisabled"
+        [class.cursor-not-allowed]="isSendDisabled || this.not_found"
+        [class.pointer-events-none]="isSendDisabled || this.not_found"
+        [class.bg-[#DBDBDB]="this.not_found"
         class="group cursor-pointer flex items-center gap-2 px-5 py-3 shadow-lg rounded-[30px] bg-white uppercase font-bold text-[#4A4A4A] hover:bg-[#59CBB7] hover:text-white transition-all duration-300">
         <i class='bx bx-like text-[20px] text-[#CACACA] group-hover:text-white'></i>
         <span>{{ 'yes' | translate }}</span>
       </a>
-      <div (click)="toggleListening()" class="bg-[#FFFFFF] cursor-pointer p-6 rounded-[50%] w-[80px] h-[80px] flex items-center justify-center
+      <div
+        [class.cursor-not-allowed]="this.not_found"
+        [class.pointer-events-none]="this.not_found"
+        (click)="toggleListening()" class="bg-[#FFFFFF] cursor-pointer p-6 rounded-[50%] w-[80px] h-[80px] flex items-center justify-center
                   shadow-[0_4px_10px_rgba(255,0,255,0.2),0_-4px_10px_rgba(0,0,255,0.2)]
                   hover:shadow-[0_5px_12px_rgba(255,0,255,0.3),0_-5px_12px_rgba(0,0,255,0.3)]
                   transition-shadow duration-300 ease-in-out">
@@ -58,8 +63,8 @@
       </div>
       <a
         (click)="submitEvaluation(false)"
-        [class.cursor-not-allowed]="isSendDisabled"
-        [class.pointer-events-none]="isSendDisabled"
+        [class.cursor-not-allowed]="isSendDisabled || this.not_found"
+        [class.pointer-events-none]="isSendDisabled || this.not_found"
         class="group cursor-pointer flex items-center gap-2 px-5 py-3 shadow-lg rounded-[30px] bg-white uppercase font-bold text-[#4A4A4A] hover:bg-[#FF4F5E] hover:text-white transition-all duration-300">
         <i class='bx bx-dislike text-[20px] text-[#CACACA] group-hover:text-white'></i>
         <span>{{ 'no' | translate }}</span>
@@ -78,7 +83,10 @@
         </a>
       </div>
       <div class="flex items-center gap-4">
-        <a (click)="skipText()" class="flex cursor-pointer font-[500] items-center gap-2 border border-[#DBDBDB] rounded-[30px] px-8 py-3">
+        <a
+          [class.cursor-not-allowed]="this.not_found"
+          [class.pointer-events-none]="this.not_found"
+          (click)="skipText()" class="flex cursor-pointer font-[500] items-center gap-2 border border-[#DBDBDB] rounded-[30px] px-8 py-3">
           <i class="bx bx-chevrons-right font-medium"></i>
           {{ 'skip' | translate }}
         </a>
