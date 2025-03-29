@@ -17,8 +17,7 @@ export class RecordService {
   }
 
   sendRecord(data: any) {
-    console.log('Sending recording:', data);
-    return this.http.post(`${this.apiBase}/sentences`, data);
+    return this.http.post(`${this.apiBase}/clips`, data);
   }
 
   skipSpeakText(id: any) {

@@ -49,6 +49,7 @@ export class ListenComponent implements OnInit {
     private translateService: TranslateService
   ) {}
 
+  isFetching = false;
   currentLanguage: any;
 
   isModalOpen = false;
@@ -92,16 +93,24 @@ export class ListenComponent implements OnInit {
   }
 
   async getRandomRecord() {
-    this.isLoading = true;
+    if (this.isFetching) return;
+    this.isFetching = true;
+
     this.recordService.getRandomRecord().subscribe(
       (response: any) => {
+        if (response.length === 0) {
+          console.warn("Нет доступных записей");
+          this.isFetching = false;
+          return;
+        }
+
         this.availableTexts = [...response];
         this.getRandomText();
-        this.isLoading = false;
+        this.isFetching = false;
       },
       (error) => {
         console.error("Ошибка запроса:", error);
-        this.isLoading = false;
+        this.isFetching = false;
       }
     );
   }
