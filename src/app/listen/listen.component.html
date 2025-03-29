@@ -1,4 +1,4 @@
-<div *ngIf="isLoading" class="w-full h-[75vh] flex items-center justify-center">
+<div *ngIf="isFetching" class="w-full h-[75vh] flex items-center justify-center">
   <svg class="loader" width="240" height="240" viewBox="0 0 240 240">
     <circle class="loader-ring loader-ring-a" cx="120" cy="120" r="105" fill="none" stroke="#000" stroke-width="20" stroke-dasharray="0 660" stroke-dashoffset="-330" stroke-linecap="round"></circle>
     <circle class="loader-ring loader-ring-b" cx="120" cy="120" r="35" fill="none" stroke="#000" stroke-width="20" stroke-dasharray="0 220" stroke-dashoffset="-110" stroke-linecap="round"></circle>
@@ -6,7 +6,7 @@
     <circle class="loader-ring loader-ring-d" cx="155" cy="120" r="70" fill="none" stroke="#000" stroke-width="20" stroke-dasharray="0 440" stroke-linecap="round"></circle>
   </svg>
 </div>
-<div *ngIf="!isLoading">
+<div *ngIf="!isFetching">
 
   <app-nav></app-nav>
   <div class="flex pt-16 pb-6 flex-col items-center h-full bg-[#F4F3F2] gap-6">
@@ -24,7 +24,7 @@
 
 
     <div class="relative w-full flex justify-center overflow-x-hidden">
-      <div *ngIf="showText" class="text-screen bg-[#FFFFFF] overflow-x-hidden w-[50%] h-[250px] flex justify-center items-center
+      <div *ngIf="showText" class="text-screen text-center bg-[#FFFFFF] overflow-x-hidden w-[50%] h-[250px] flex justify-center items-center
        shadow-lg"
            @textSwitch>
         <p class="text-[24px]">{{ text?.text }}</p>

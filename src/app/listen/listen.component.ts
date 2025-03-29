@@ -98,15 +98,16 @@ export class ListenComponent implements OnInit {
 
     this.recordService.getRandomRecord().subscribe(
       (response: any) => {
-        if (response.length === 0) {
+        this.isFetching = false;
+
+        if (!response || response.length === 0) {
           console.warn("Нет доступных записей");
-          this.isFetching = false;
+          this.text = null;
           return;
         }
 
         this.availableTexts = [...response];
         this.getRandomText();
-        this.isFetching = false;
       },
       (error) => {
         console.error("Ошибка запроса:", error);
@@ -132,13 +133,12 @@ export class ListenComponent implements OnInit {
   getRandomText() {
     if (this.availableTexts.length === 0) {
       console.warn("Все записи просмотрены");
-      this.getRandomRecord();
+      this.text = null;
       return;
     }
 
     const randomIndex = Math.floor(Math.random() * this.availableTexts.length);
     this.text = this.availableTexts[randomIndex];
-
     this.availableTexts.splice(randomIndex, 1);
   }
 
