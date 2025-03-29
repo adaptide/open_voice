@@ -3,6 +3,8 @@ import {FormsModule, ReactiveFormsModule} from "@angular/forms";
 import {NgClass, NgForOf, NgIf} from "@angular/common";
 import {TranslatePipe} from "@ngx-translate/core";
 import {AuthService} from "../../services/auth.service";
+import {UserService} from "../../services/user.service";
+import {saveAs} from "file-saver";
 
 @Component({
   selector: 'app-download',
@@ -20,9 +22,10 @@ import {AuthService} from "../../services/auth.service";
 })
 export class DownloadComponent implements OnInit {
 
-  constructor(private authService: AuthService) {
+  constructor(private authService: AuthService, private userService: UserService) {
   }
 
+  downloadIsLoading = false;
   currentLanguage: any;
   currentUser: any;
 
@@ -54,5 +57,21 @@ export class DownloadComponent implements OnInit {
     a.click();
     document.body.removeChild(a);
     window.URL.revokeObjectURL(url);
+  }
+
+  downloadUserRecords(): void {
+    this.downloadIsLoading = true;
+    const parsedName = this.currentUser.name.replace(/\s+/g, '_').toLowerCase();
+
+    this.userService.downloadUserRecords().subscribe({
+      next: (response) => {
+        const fileName = `${parsedName}.zip`;
+        saveAs(response, fileName);
+        this.downloadIsLoading = false;
+      },
+      error: (error) => {
+        console.error('Error downloading user records:', error);
+      },
+    })
   }
 }

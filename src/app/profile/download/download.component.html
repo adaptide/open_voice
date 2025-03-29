@@ -41,11 +41,14 @@
       </div>
 
       <div>
-        <button
+        <button *ngIf="!downloadIsLoading" (click)="downloadUserRecords()"
           class="bg-[#629FF4] w-[250px] px-6 py-4 rounded-[40px] text-white font-[500]
          hover:bg-white hover:text-[#629FF4] hover:border-[#629FF4] border border-transparent
          transition-all duration-300">{{ 'download_personal_audios' | translate }}
         </button>
+        <div class="px-6 py-4 w-[250px] flex justify-center">
+          <div *ngIf="downloadIsLoading" class="loader"></div>
+        </div>
       </div>
     </div>
   </div>
