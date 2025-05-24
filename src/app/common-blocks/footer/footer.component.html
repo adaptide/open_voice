@@ -1,49 +1,61 @@
-<footer class="bg-[#000000] px-40 py-14 w-full flex flex-col text-white">
-  <div class="flex justify-between items-start w-full">
+<footer class="bg-[#000000] px-6 md:px-12 lg:px-40 py-14 w-full">
+  <div class="flex flex-col lg:flex-row justify-between gap-8">
+    <!-- Links Column 1 -->
     <div class="flex flex-col gap-4">
-      <a href="#">{{ 'contact' | translate }}</a>
-      <a [routerLink]="['/' + currentLanguage + '/policy']">{{ 'privacy_policy' | translate }}</a>
-      <a [routerLink]="['/' + currentLanguage + '/terms']">{{ 'terms' | translate }}</a>
-      <a href="#">{{ 'cookies' | translate }}</a>
+      <a href="#" class="text-white hover:text-gray-300">{{ 'contact' | translate }}</a>
+      <a [routerLink]="['/' + currentLanguage + '/policy']" class="text-white hover:text-gray-300">{{ 'privacy_policy' | translate }}</a>
+      <a [routerLink]="['/' + currentLanguage + '/terms']" class="text-white hover:text-gray-300">{{ 'terms' | translate }}</a>
+      <a href="#" class="text-white hover:text-gray-300">{{ 'cookies' | translate }}</a>
     </div>
 
-    <div class="w-[1px] h-32 my-auto bg-[#333333]">
-    </div>
+    <!-- Separator -->
+    <div class="hidden lg:block w-[1px] bg-[#333333]"></div>
 
-
+    <!-- Links Column 2 -->
     <div class="flex flex-col gap-4">
-      <a [routerLink]="['/' + currentLanguage + '/about']">{{ 'about' | translate }}</a>
-      <a href="#">{{ 'faq' | translate }}</a>
-      <a [routerLink]="['/' + currentLanguage + '/guidelines']" >{{ 'documentations' | translate }}</a>
-      <a href="#">{{ 'download' | translate }}</a>
+      <a [routerLink]="['/' + currentLanguage + '/about']" class="text-white hover:text-gray-300">{{ 'about' | translate }}</a>
+      <a href="#" class="text-white hover:text-gray-300">{{ 'faq' | translate }}</a>
+      <a [routerLink]="['/' + currentLanguage + '/guidelines']" class="text-white hover:text-gray-300">{{ 'documentations' | translate }}</a>
+      <a href="#" class="text-white hover:text-gray-300">{{ 'download' | translate }}</a>
     </div>
 
-    <div class="bg-[#4A4A4A] rounded-[10px] w-[300px] p-4 h-[200px] flex flex-col gap-6 items-center justify-center text-center">
-      <p class="italic">{{ 'help_discord' | translate }}</p>
-      <img class="cursor-pointer" src="/logos/discord.png" width="100">
+    <!-- Discord Section -->
+    <div class="bg-[#4A4A4A] rounded-[10px] p-4 w-full lg:w-[300px] flex flex-col gap-6 items-center justify-center text-center">
+      <p class="text-white italic">{{ 'help_discord' | translate }}</p>
+      <img class="cursor-pointer" src="/logos/discord.png" width="100" alt="Discord">
     </div>
 
-    <div class="w-[400px] flex flex-col gap-4">
-      <p class="text-[14px]">{{ 'news_subscription' | translate }}</p>
-      <div>
-        <input class="px-4 py-2 w-[70%] outline-none text-black" type="email" placeholder="{{ 'subscribe_input_placeholder' | translate }}">
-        <button class="bg-[#9B90FF] px-4 py-2"><i class='bx bx-play' style='color:#ffffff'  ></i></button>
+    <!-- Newsletter Section -->
+    <div class="w-full lg:w-[400px] flex flex-col gap-4">
+      <p class="text-white text-sm">{{ 'news_subscription' | translate }}</p>
+      <div class="flex gap-2">
+        <input 
+          type="email" 
+          class="flex-1 px-4 py-2 bg-white outline-none text-black rounded-md" 
+          placeholder="{{ 'subscribe_input_placeholder' | translate }}"
+        >
+        <button class="bg-[#9B90FF] hover:bg-[#8A7FFF] px-4 py-2 rounded-md transition-colors">
+          <i class='bx bx-play text-white'></i>
+        </button>
       </div>
 
       <div class="flex gap-2 items-start">
-        <input type="checkbox" class="mt-2">
-        <span class="text-[12px] m-0 p-0">{{ 'accept_terms' | translate }}</span>
+        <input type="checkbox" class="mt-1.5">
+        <span class="text-white text-sm">{{ 'accept_terms' | translate }}</span>
       </div>
     </div>
   </div>
 
-  <div class="flex items-center gap-20 mt-20">
+  <!-- Bottom Section -->
+  <div class="flex flex-col lg:flex-row items-center gap-4 lg:gap-20 mt-20">
     <div>
-      <span class="text-[30px]">Open Voice</span>
+      <span class="text-white text-[30px]">Open Voice</span>
     </div>
-
     <div>
-      <p class="text-[12px]">Содержимое доступно под лицензией <span class="text-[#1B1AFF] cursor-pointer">Creative Commons</span></p>
+      <p class="text-white text-sm">
+        {{ 'FOOTER.LICENSE' | translate }}
+        <span class="text-[#1B1AFF] cursor-pointer hover:text-[#1B1AFF]/80">Creative Commons</span>
+      </p>
     </div>
   </div>
 </footer>

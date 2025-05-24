@@ -1,106 +1,140 @@
-<div class="flex flex-col gap-28">
-  <section class="flex items-center justify-between px-36 py-14 w-full">
-    <div class="flex flex-col w-[40%] gap-10">
-      <div class="relative inline-block overflow-hidden">
-        <h1 class="text-[60px] font-bold leading-[70px] w-full relative z-10 mb-4">{{ 'ILLUSTRATION_1_TITLE' | translate }}</h1>
-        <div class="absolute bottom-0 left-0 h-[5px] bg-[#1B1AFF] w-full animate-slide"></div>
+<div class="min-h-screen bg-gradient-to-br from-[#1B1AFF]/5 to-white">
+  <!-- Hero Section -->
+  <section class="container mx-auto px-4 md:px-6 lg:px-8 py-16">
+    <div class="max-w-5xl mx-auto text-center space-y-6">
+      <div class="inline-flex items-center gap-2 px-4 py-2 bg-blue-50 rounded-full text-sm text-blue-600 mb-4">
+        <i class='bx bx-code-alt'></i> 100% Open Source
       </div>
-      <p>{{ 'ILLUSTRATION_1_TEXT' | translate }}</p>
-      <button [routerLink]="['/' + currentLanguage + '/speak']" class="bg-[#9B90FF] px-10 text-white flex justify-center text-[18px] font-[500] items-center gap-4 py-3 rounded-[30px] text-center w-[200px]">{{ 'start' | translate }} <i class='bx bx-down-arrow-alt' style='color:#ffffff' ></i></button>
-    </div>
-
-    <div class="flex w-[60%] justify-end relative">
-      <img src="/illustration.svg" width="600">
-
-      <span [routerLink]="['/' + currentLanguage + '/listen']" class="w-[80px] h-[80px] cursor-pointer top-[-20px] left-32 bg-white text-center rounded-[50%] shadow-lg flex justify-center items-center absolute"><i class='bx bx-play text-[40px]' style="color: #59cbb7"></i></span>
-      <span [routerLink]="['/' + currentLanguage + '/speak']" class="w-[80px] h-[80px] cursor-pointer bottom-[-20px] left-[50%] bg-white text-center rounded-[50%] shadow-lg flex justify-center items-center absolute"><i class='bx bx-microphone text-[36px]' style='color:#ff4f5e'  ></i></span>
-    </div>
-  </section>
-
-  <section class="flex items-center justify-between px-36 py-14 w-full">
-    <div class="flex w-[50%] justify-start relative">
-      <img src="/Illustration_2.svg" width="600">
-    </div>
-    <div class="flex flex-col w-[40%] gap-10">
-      <div class="relative inline-block overflow-hidden">
-        <h1 class="text-[60px] font-bold leading-[70px] w-full relative z-10 mb-4">Бұл жоба не үшін қажет?</h1>
+      <h1 class="text-4xl md:text-5xl lg:text-6xl font-bold text-gray-900 leading-tight">
+        {{ 'HOME.HERO.TITLE' | translate }}
+      </h1>
+      <p class="text-xl text-gray-600 max-w-3xl mx-auto">
+        {{ 'HOME.HERO.DESCRIPTION' | translate }}
+      </p>
+      <div class="flex flex-wrap gap-4 justify-center mt-8">
+        <button [routerLink]="['/' + currentLanguage + '/speak']" 
+                class="bg-[#1B1AFF] hover:bg-[#0F0FFF] transition-all duration-300 px-8 py-4 rounded-lg text-white text-lg font-medium flex items-center gap-2">
+          <i class='bx bx-microphone text-2xl'></i>
+          {{ 'HOME.BUTTONS.RECORD' | translate }}
+        </button>
+        <button [routerLink]="['/' + currentLanguage + '/organizations']" 
+                class="bg-white hover:bg-gray-50 border-2 border-[#1B1AFF] transition-all duration-300 px-8 py-4 rounded-lg text-[#1B1AFF] text-lg font-medium flex items-center gap-2">
+          <i class='bx bx-building-house text-2xl'></i>
+          {{ 'HOME.BUTTONS.JOIN_ORG' | translate }}
+        </button>
       </div>
-      <div class="flex flex-col gap-6">
-        <p>Қазақ тіліндегі дауыс деректерін жинау – сөйлеуді тану жүйелерін дамыту үшін өте маңызды. Бұл жоба:</p>
-        <ul class="list-disc list-inside flex flex-col gap-2">
-          <li>Дауыспен басқару технологияларын жақсартуға көмектеседі.</li>
-          <li>Қазақша жасанды интеллект пен аудиотехнологияларды дамытуға ықпал етеді.</li>
-          <li>Ашық және қолжетімді дерекқор жасайды.</li>
-        </ul>
-      </div>
-      <button [routerLink]="['/' + currentLanguage + '/about']" class="bg-[#9B90FF] px-10 text-white flex justify-center text-[18px] font-[500] items-center gap-4 py-3 rounded-[30px] text-center w-[300px]">Мәліметтерді қараңыз</button>
     </div>
   </section>
 
-  <section class="flex flex-col px-36 items-center py-14 w-full">
-    <div class="flex text-center w-full justify-center relative">
-      <h1 class="text-[60px] font-bold leading-[70px] w-full relative z-10 mb-4">Біз не ұсынамыз!</h1>
+  <!-- Features Grid -->
+  <section class="container mx-auto px-4 md:px-6 lg:px-8 py-16">
+    <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8 max-w-6xl mx-auto">
+      <!-- Open Source Card -->
+      <div class="bg-white p-8 rounded-2xl shadow-sm hover:shadow-md transition-shadow">
+        <div class="w-12 h-12 bg-[#1B1AFF]/10 rounded-lg flex items-center justify-center mb-6">
+          <i class='bx bx-code-alt text-2xl text-[#1B1AFF]'></i>
+        </div>
+        <h3 class="text-xl font-semibold mb-4">{{ 'HOME.FEATURES.OPEN_SOURCE.TITLE' | translate }}</h3>
+        <p class="text-gray-600">{{ 'HOME.FEATURES.OPEN_SOURCE.DESCRIPTION' | translate }}</p>
+      </div>
+
+      <!-- Organization Access Card -->
+      <div class="bg-white p-8 rounded-2xl shadow-sm hover:shadow-md transition-shadow">
+        <div class="w-12 h-12 bg-[#1B1AFF]/10 rounded-lg flex items-center justify-center mb-6">
+          <i class='bx bx-building-house text-2xl text-[#1B1AFF]'></i>
+        </div>
+        <h3 class="text-xl font-semibold mb-4">{{ 'HOME.FEATURES.ORG_ACCESS.TITLE' | translate }}</h3>
+        <p class="text-gray-600">{{ 'HOME.FEATURES.ORG_ACCESS.DESCRIPTION' | translate }}</p>
+      </div>
+
+      <!-- Data Access Card -->
+      <div class="bg-white p-8 rounded-2xl shadow-sm hover:shadow-md transition-shadow">
+        <div class="w-12 h-12 bg-[#1B1AFF]/10 rounded-lg flex items-center justify-center mb-6">
+          <i class='bx bx-data text-2xl text-[#1B1AFF]'></i>
+        </div>
+        <h3 class="text-xl font-semibold mb-4">{{ 'HOME.FEATURES.DATA_ACCESS.TITLE' | translate }}</h3>
+        <p class="text-gray-600">{{ 'HOME.FEATURES.DATA_ACCESS.DESCRIPTION' | translate }}</p>
+      </div>
     </div>
+  </section>
 
-    <div class="flex flex-wrap justify-center gap-12 mt-10">
-      <div class="flex flex-col justify-between max-w-[450px] min-h-[400px] bg-[#F5F8FE] p-10 rounded-[20px] shadow-lg">
-        <div>
-          <h4 class="flex items-center gap-4 text-[18px] font-[600]"><i class='bx bx-microphone' style='color:#ff4f5e'  ></i> Дауысты жазу беті (Record Page)</h4>
+  <!-- Stats Section with Organizations Focus -->
+  <section class="container mx-auto px-4 md:px-6 lg:px-8 py-12">
+    <div class="bg-white rounded-2xl shadow-sm p-8 max-w-6xl mx-auto">
+      <div class="grid grid-cols-1 md:grid-cols-4 gap-8">
+        <div class="text-center">
+          <div class="text-3xl font-bold text-[#1B1AFF] mb-2">10,000+</div>
+          <div class="text-gray-600">{{ 'HOME.STATS.RECORDINGS' | translate }}</div>
         </div>
-
-        <div>
-          <p>Өз дауысыңызбен үлес қосыңыз! Төмендегі сөйлемдерді оқып, сапалы аудиожазбалар жасауға көмектесіңіз.</p>
+        <div class="text-center">
+          <div class="text-3xl font-bold text-[#1B1AFF] mb-2">1,000+</div>
+          <div class="text-gray-600">{{ 'HOME.STATS.PARTICIPANTS' | translate }}</div>
         </div>
-
-        <div class="flex justify-center">
-          <button [routerLink]="['/' + currentLanguage + '/speak']" class="bg-[#9B90FF] px-10 text-white flex justify-center text-[18px] font-[500] items-center gap-4 py-3 rounded-[30px] text-center w-[250px]">Жазуды бастау</button>
+        <div class="text-center">
+          <div class="text-3xl font-bold text-[#1B1AFF] mb-2">500+</div>
+          <div class="text-gray-600">{{ 'HOME.STATS.HOURS' | translate }}</div>
         </div>
-      </div>
-
-      <div class="flex flex-col justify-between max-w-[450px] min-h-[400px] bg-[#F5F8FE] p-10 rounded-[20px] shadow-lg">
-        <div>
-          <h4 class="flex items-center gap-4 text-[18px] font-[600]"><i class='bx bx-play text-[24px]' style='color:#59cbb7'  ></i> Дауысты тексеру (Validate Page)</h4>
-        </div>
-
-        <div>
-          <p>Қазақша деректердің сапасын жақсартайық! Мұнда басқа адамдардың жазбаларын тыңдап, олардың дұрыс оқылғанын тексере аласыз.</p>
-        </div>
-
-        <div class="flex justify-center">
-          <button [routerLink]="['/' + currentLanguage + '/listen']" class="bg-[#9B90FF] px-10 text-white flex justify-center text-[18px] font-[500] items-center gap-4 py-3 rounded-[30px] text-center w-[250px]">Тексеру</button>
+        <div class="text-center">
+          <div class="text-3xl font-bold text-[#1B1AFF] mb-2">50+</div>
+          <div class="text-gray-600">{{ 'HOME.STATS.ORGANIZATIONS' | translate }}</div>
         </div>
       </div>
+    </div>
+  </section>
 
-      <div class="flex flex-col justify-between max-w-[450px] min-h-[400px] bg-[#F5F8FE] p-10 rounded-[20px] shadow-lg">
-        <div>
-          <h4 class="flex items-center gap-4 text-[18px] font-[600]"><i class='bx bx-play text-[24px]' style='color:#59cbb7'  ></i> Сөйлем жазу беті (Write Page)</h4>
+  <!-- How Organizations Can Join -->
+  <section class="container mx-auto px-4 md:px-6 lg:px-8 py-16 bg-white rounded-2xl shadow-sm">
+    <div class="max-w-4xl mx-auto">
+      <h2 class="text-3xl font-bold text-center mb-12">{{ 'HOME.ORG_STEPS.TITLE' | translate }}</h2>
+      
+      <div class="space-y-8">
+        <div class="flex items-start gap-6">
+          <div class="w-12 h-12 rounded-lg bg-[#1B1AFF]/10 flex items-center justify-center flex-shrink-0">
+            <span class="text-xl font-semibold text-[#1B1AFF]">1</span>
+          </div>
+          <div>
+            <h3 class="text-xl font-semibold mb-2">{{ 'HOME.ORG_STEPS.STEP1.TITLE' | translate }}</h3>
+            <p class="text-gray-600">{{ 'HOME.ORG_STEPS.STEP1.DESCRIPTION' | translate }}</p>
+          </div>
         </div>
 
-        <div>
-          <p>
-            Қазақша сөйлемдерді жазып, олардың аудио жазбаларын тыңдауға көмектесіңіз. Сіздің көмегіңізбен жасанды интеллект қазақша сөйлеп, тыңдай алады.
-          </p>
+        <div class="flex items-start gap-6">
+          <div class="w-12 h-12 rounded-lg bg-[#1B1AFF]/10 flex items-center justify-center flex-shrink-0">
+            <span class="text-xl font-semibold text-[#1B1AFF]">2</span>
+          </div>
+          <div>
+            <h3 class="text-xl font-semibold mb-2">{{ 'HOME.ORG_STEPS.STEP2.TITLE' | translate }}</h3>
+            <p class="text-gray-600">{{ 'HOME.ORG_STEPS.STEP2.DESCRIPTION' | translate }}</p>
+          </div>
         </div>
 
-        <div class="flex justify-center">
-          <button [routerLink]="['/' + currentLanguage + '/write']" class="bg-[#9B90FF] px-10 text-white flex justify-center text-[18px] font-[500] items-center gap-4 py-3 rounded-[30px] text-center w-[250px]">Сөйлем жазу</button>
+        <div class="flex items-start gap-6">
+          <div class="w-12 h-12 rounded-lg bg-[#1B1AFF]/10 flex items-center justify-center flex-shrink-0">
+            <span class="text-xl font-semibold text-[#1B1AFF]">3</span>
+          </div>
+          <div>
+            <h3 class="text-xl font-semibold mb-2">{{ 'HOME.ORG_STEPS.STEP3.TITLE' | translate }}</h3>
+            <p class="text-gray-600">{{ 'HOME.ORG_STEPS.STEP3.DESCRIPTION' | translate }}</p>
+          </div>
         </div>
       </div>
+    </div>
+  </section>
 
-      <div class="flex flex-col justify-between max-w-[450px] min-h-[400px] bg-[#F5F8FE] p-10 rounded-[20px] shadow-lg">
-        <div>
-          <h4 class="flex items-center gap-4 text-[18px] font-[600]"><i class='bx bx-download' style='color:#1b1aff'  ></i> Жүктеу беті (Download Page)</h4>
-        </div>
-
-        <div>
-          <p>
-            Қазақша сөйлемдерді жазып, олардың аудио жазбаларын тыңдауға көмектесіңіз. Сіздің көмегіңізбен жасанды интеллект қазақша сөйлеп, тыңдай алады.
-          </p>
-        </div>
-
-        <div class="flex justify-center">
-          <button [routerLink]="['/' + currentLanguage + '/download']" class="bg-[#9B90FF] px-10 text-white flex justify-center text-[18px] font-[500] items-center gap-4 py-3 rounded-[30px] text-center w-[250px]">Жүктеу</button>
-        </div>
+  <!-- Call to Action -->
+  <section class="container mx-auto px-4 md:px-6 lg:px-8 py-16">
+    <div class="max-w-4xl mx-auto bg-[#1B1AFF] rounded-2xl p-8 md:p-12 text-center text-white">
+      <h2 class="text-3xl font-bold mb-4">{{ 'HOME.CTA.TITLE' | translate }}</h2>
+      <p class="text-lg mb-8 opacity-90">{{ 'HOME.CTA.DESCRIPTION' | translate }}</p>
+      <div class="flex flex-wrap gap-4 justify-center">
+        <button [routerLink]="['/' + currentLanguage + '/speak']" 
+                class="bg-white text-[#1B1AFF] hover:bg-gray-100 transition-all duration-300 px-8 py-4 rounded-lg text-lg font-medium">
+          {{ 'HOME.CTA.START' | translate }}
+        </button>
+        <button [routerLink]="['/' + currentLanguage + '/organizations']" 
+                class="bg-transparent border-2 border-white hover:bg-white/10 transition-all duration-300 px-8 py-4 rounded-lg text-white text-lg font-medium">
+          {{ 'HOME.CTA.JOIN_ORG' | translate }}
+        </button>
       </div>
     </div>
   </section>

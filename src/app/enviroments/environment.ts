@@ -1,4 +1,4 @@
 export const environment = {
   production: false,
-  apiUrl: "https://api.openvoice.init.red/api/v1"
+  apiUrl: "https://admin.openvoice.iict.kz/api/v1"
 };

@@ -56,7 +56,7 @@
   "REPORT_TYPES.grammar_error": "Grammatical / spelling error",
   "grammar_error_text": "The sentence has a grammatical or spelling error.",
   "REPORT_TYPES.foreign_language": "Different language",
-  "foreign_language_text": "It is written in a language different than what I’m speaking.",
+  "foreign_language_text": "It is written in a language different than what I'm speaking.",
   "REPORT_TYPES.difficult_to_pronounce": "Difficult to pronounce",
   "difficult_to_pronounce_text": "It contains words or phrases that are hard to read or pronounce.",
   "other": "Other",
@@ -143,5 +143,118 @@
   "delete_account": "Delete account",
 
   "text_not_found": "No texts available",
-  "record_not_found": "No records available"
+  "record_not_found": "No records available",
+
+  "HOME": {
+    "HERO": {
+      "TITLE": "Open Voice Data Collection Platform",
+      "DESCRIPTION": "A fully open-source platform where organizations and individuals collaborate to build comprehensive voice datasets for language development."
+    },
+    "BUTTONS": {
+      "RECORD": "Record Voice",
+      "JOIN_ORG": "Join as Organization"
+    },
+    "FEATURES": {
+      "OPEN_SOURCE": {
+        "TITLE": "100% Open Source",
+        "DESCRIPTION": "Our entire platform is open source, allowing complete transparency and community-driven development."
+      },
+      "ORG_ACCESS": {
+        "TITLE": "Organization Access",
+        "DESCRIPTION": "Organizations can request full access to our services and contribute to voice data collection."
+      },
+      "DATA_ACCESS": {
+        "TITLE": "Open Data Access",
+        "DESCRIPTION": "Access and download voice datasets while maintaining privacy and ethical standards."
+      }
+    },
+    "STATS": {
+      "RECORDINGS": "Voice Recordings",
+      "PARTICIPANTS": "Contributors",
+      "HOURS": "Hours of Audio",
+      "ORGANIZATIONS": "Partner Organizations"
+    },
+    "ORG_STEPS": {
+      "TITLE": "How Organizations Can Join",
+      "STEP1": {
+        "TITLE": "Submit Request",
+        "DESCRIPTION": "Fill out a simple form to request organizational access to our platform."
+      },
+      "STEP2": {
+        "TITLE": "Get Verified",
+        "DESCRIPTION": "We review your organization's request to ensure alignment with our open-source values."
+      },
+      "STEP3": {
+        "TITLE": "Full Access",
+        "DESCRIPTION": "Once approved, get complete access to our voice data collection tools and datasets."
+      }
+    },
+    "CTA": {
+      "TITLE": "Be Part of Open Voice Development",
+      "DESCRIPTION": "Whether you're an individual contributor or an organization, join us in building the future of voice technology.",
+      "START": "Start Contributing",
+      "JOIN_ORG": "Register Organization"
+    }
+  },
+
+  "ABOUT": {
+    "BADGE": "Global Voice Collection",
+    "HERO": {
+      "TITLE": "Why Open Voice?",
+      "DESCRIPTION_1": "Open Voice is a publicly accessible voice dataset created from volunteer voices worldwide. People who want to create voice applications can use this dataset to train machine learning models.",
+      "DESCRIPTION_2": "Currently, most voice datasets are owned by companies, which limits innovation. Voice datasets are also dominated by English-speaking males. This means voice technology doesn't work for many languages, and where it does work, it may not work equally well for everyone. We want to change this by encouraging people from around the world to share their voice."
+    },
+    "MISSION": {
+      "GLOBAL": {
+        "TITLE": "Global Accessibility",
+        "DESCRIPTION": "Making voice technology accessible to everyone, regardless of language or background."
+      },
+      "OPEN": {
+        "TITLE": "Open Source",
+        "DESCRIPTION": "All our code and data are open source, enabling transparency and community-driven development."
+      },
+      "INNOVATION": {
+        "TITLE": "Driving Innovation",
+        "DESCRIPTION": "Empowering organizations and developers to create inclusive voice technologies."
+      }
+    },
+    "HOW_IT_WORKS": {
+      "TITLE": "How Open Voice Works",
+      "DESCRIPTION": "We're creating a crowdsourced open voice dataset. Help with your voice, verify others' recordings, make the dataset better for everyone.",
+      "STEP1": {
+        "TITLE": "Language Request",
+        "DESCRIPTION": "Someone requests to add a language."
+      },
+      "STEP2": {
+        "TITLE": "Website Localization",
+        "DESCRIPTION": "Website text is translated into that language."
+      },
+      "STEP3": {
+        "TITLE": "Community Building",
+        "DESCRIPTION": "We gather a community of speakers and contributors."
+      },
+      "STEP4": {
+        "TITLE": "Language Launch",
+        "DESCRIPTION": "We launch Open Voice in that language."
+      },
+      "STEP5": {
+        "TITLE": "Voice Sharing",
+        "DESCRIPTION": "People come and share their voices."
+      },
+      "STEP6": {
+        "TITLE": "Voice Validation",
+        "DESCRIPTION": "Others verify these voice recordings."
+      },
+      "FINAL": {
+        "TITLE": "Dataset Release",
+        "DESCRIPTION": "We publish the dataset every 3 months."
+      }
+    },
+    "CTA": {
+      "TITLE": "Join the Voice Revolution",
+      "DESCRIPTION": "Your voice can help make technology more inclusive and accessible for everyone.",
+      "START": "Start Contributing",
+      "LEARN_MORE": "Learn More"
+    }
+  }
 }
