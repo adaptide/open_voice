@@ -1,46 +1,26 @@
-<div class="container">
-  <div class="login_form">
-    <form action="#" [formGroup]="form" (ngSubmit)="onSubmit()">
-      <h3>Войти с помощью</h3>
-      <div class="login_option">
-        <div class="option">
-          <a href="#">
-            <img src="./logos/google.png" alt="Google" />
-            <span>Google</span>
-          </a>
-        </div>
-        <div class="option">
-          <a href="#">
-            <img src="./logos/facebook.png" alt="Apple" />
-            <span>Facebook</span>
-          </a>
+<div class="auth-page-bg min-h-screen flex flex-col items-center justify-center pt-[100px] pb-10 bg-[#f8f8fb]">
+  <div class="auth-form-container w-full max-w-[400px] bg-white rounded-[16px] shadow-lg p-10 flex flex-col items-center">
+    <a [routerLink]="['/' + currentLanguage + '/']" class="mb-6 text-[30px] font-[400] text-black logo-link">Open Voice</a>
+    <form [formGroup]="form" (ngSubmit)="onSubmit()" class="w-full">
+      <div class="input_box mb-6">
+        <label for="email" class="block font-[500] mb-2">{{ 'email' | translate }}</label>
+        <input [class.error-border]="form.get('email')?.invalid && form.get('email')?.touched" type="email" formControlName="email" id="email" placeholder="{{ 'auth.email_placeholder' | translate }}" required class="input-field" />
+        <div *ngIf="form.get('email')?.invalid && form.get('email')?.touched" class="error-text">
+          <p *ngIf="form.get('email')?.errors?.['required']">{{ 'required_field' | translate }}</p>
         </div>
       </div>
-      <p class="separator">
-        <span>ИЛИ</span>
-      </p>
-      <div class="input_box">
-        <label for="email">Email</label>
-        <input [class.error-border]="form.get('email')?.invalid && form.get('email')?.touched" type="email" formControlName="email" id="email" placeholder="Введите адрес электронной почты" required />
-        <div *ngIf="form.get('email')?.invalid && form.get('email')?.touched" class="text-left flex justify-start">
-          <p class="error-text" *ngIf="form.get('email')?.errors?.['required']">Поле обязательно для заполнения</p>
-          <p class="error-text" *ngIf="form.get('email')?.errors?.['email']">Введите корректный email</p>
+      <div class="input_box mb-6">
+        <div class="flex justify-between items-center mb-2">
+          <label for="password" class="font-[500]">{{ 'auth.password' | translate }}</label>
+          <a href="#" class="text-[14px] text-[#626cd6] hover:underline">{{ 'auth.forgot_password' | translate }}</a>
+        </div>
+        <input [class.error-border]="form.get('password')?.invalid && form.get('password')?.touched" type="password" formControlName="password" id="password" placeholder="{{ 'auth.password_placeholder' | translate }}" required class="input-field" />
+        <div *ngIf="form.get('password')?.invalid && form.get('password')?.touched" class="error-text">
+          <p *ngIf="form.get('password')?.errors?.['required']">{{ 'required_field' | translate }}</p>
         </div>
       </div>
-      <div class="input_box">
-        <div class="password_title">
-          <label for="password">Пароль</label>
-          <a href="#">Забыли пароль?</a>
-        </div>
-        <input [class.error-border]="form.get('password')?.invalid && form.get('password')?.touched" type="password" formControlName="password" id="password" placeholder="Введите ваш пароль" required />
-        <div *ngIf="form.get('password')?.invalid && form.get('password')?.touched" class="text-left flex justify-start">
-          <p class="error-text" *ngIf="form.get('password')?.errors?.['required']">Поле обязательно для заполнения</p>
-          <p class="error-text" *ngIf="form.get('password')?.errors?.['minlength']">Минимальная длина пароля 6 символов</p>
-        </div>
-      </div>
-      <button type="submit">Войти</button>
-      <p class="sign_up">У вас еще нет аккаунта? <a [routerLink]="['/' + currentLanguage + '/auth/register']">Регистрация</a></p>
+      <button type="submit" class="main-btn w-full">{{ 'login' | translate }}</button>
+      <p class="sign_up text-center mt-4">{{ 'auth.no_account' | translate }} <a [routerLink]="['/' + currentLanguage + '/auth/register']" class="text-[#626cd6] hover:underline font-[500]">{{ 'register' | translate }}</a></p>
     </form>
   </div>
-
 </div>

@@ -1,0 +1,31 @@
+:host {
+  @apply block w-full;
+}
+
+input:disabled {
+  @apply bg-white;
+}
+
+.hover\:bg-gray-50:hover {
+  @apply bg-gray-50;
+}
+
+@media (max-width: 480px) {
+  :host {
+    @apply px-2;
+  }
+  
+  input, button {
+    @apply w-full;
+  }
+  
+  .flex-col {
+    @apply gap-2;
+  }
+}
+
+@media (min-width: 481px) {
+  :host {
+    @apply px-4;
+  }
+}

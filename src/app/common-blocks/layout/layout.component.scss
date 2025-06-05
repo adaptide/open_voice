@@ -1,34 +1,99 @@
 .dropdown-menu {
-  @apply absolute top-full left-0 p-4 text-[16px] mt-4 w-[350px] bg-white shadow-lg rounded-md flex flex-col;
+  position: absolute;
+  top: 100%;
+  left: 0;
+  background: white;
+  border: 1px solid #e5e7eb;
+  border-radius: 8px;
+  box-shadow: 0 4px 6px -1px rgb(0 0 0 / 0.1);
+  padding: 8px 0;
+  min-width: 200px;
+  z-index: 50;
 
   a {
-    @apply px-4 py-2 text-gray-700 cursor-pointer;
+    display: flex;
+    align-items: center;
+    padding: 8px 16px;
+    color: #374151;
+    transition: background-color 0.2s;
+
+    &:hover {
+      background-color: #f3f4f6;
+    }
   }
 }
 
 .tooltip-container {
   position: relative;
-  display: inline-block;
-}
 
-.tooltip-container .tooltip {
-  visibility: hidden;
-  background-color: black;
-  color: white;
-  text-align: center;
-  padding: 5px 10px;
-  border-radius: 5px;
-  position: absolute;
-  bottom: -200%;
-  left: 50%;
-  transform: translateX(-50%);
-  white-space: nowrap;
-  opacity: 0;
-  transition: opacity 0.2s;
-  font-size: 12px;
+  .tooltip {
+    position: absolute;
+    top: calc(100% + 5px);
+    left: 50%;
+    transform: translateX(-50%);
+    background: #374151;
+    color: white;
+    padding: 4px 8px;
+    border-radius: 4px;
+    font-size: 12px;
+    white-space: nowrap;
+    opacity: 0;
+    visibility: hidden;
+    transition: all 0.2s;
+    z-index: 20;
+
+    &::before {
+      content: '';
+      position: absolute;
+      bottom: 100%;
+      left: 50%;
+      transform: translateX(-50%);
+      border: 6px solid transparent;
+      border-bottom-color: #374151;
+    }
+  }
+
+  &:hover .tooltip {
+    opacity: 1;
+    visibility: visible;
+  }
 }
 
 .tooltip-link:hover + .tooltip {
   visibility: visible;
   opacity: 1;
+}
+
+// Mobile menu animations
+@keyframes slideIn {
+  from {
+    transform: translateX(-100%);
+  }
+  to {
+    transform: translateX(0);
+  }
+}
+
+@keyframes fadeIn {
+  from {
+    opacity: 0;
+  }
+  to {
+    opacity: 1;
+  }
+}
+
+// Responsive styles
+@media (max-width: 1024px) {
+  .tooltip {
+    display: none;
+  }
+}
+
+@media (max-width: 640px) {
+  .dropdown-menu {
+    left: auto;
+    right: 0;
+    min-width: 160px;
+  }
 }

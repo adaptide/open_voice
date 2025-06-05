@@ -1,20 +1,28 @@
 <div class="w-full flex flex-col">
   <div class="w-full">
-    <h1 class="text-[26px] font-bold border-b pb-4">{{ 'username' | translate }}</h1>
+    <h1 class="text-[22px] sm:text-[26px] font-bold border-b pb-4 mb-6">{{ 'username' | translate }}</h1>
   </div>
 
-  <div class="w-full mt-10">
-    <div class="flex w-full items-start gap-4">
-      <div class="relative w-[400px]">
-        <label class="absolute top-[-18px] p-2 bg-white left-4 text-[12px]">{{ 'email' | translate }}</label>
-        <input disabled value="{{ this.currentUser.email }}" class="border text-[#959595] cursor-not-allowed border-[#E6E4E1] w-full px-6 py-3" type="text">
-        <p class="text-[12px] mt-2">{{ 'change_mail_text' | translate }}
-          <a href="#" class="text-[#1570EF]">open-voice&#64;mail.ru</a></p>
+  <!-- Email Section -->
+  <div class="w-full space-y-6">
+    <div class="flex flex-col w-full gap-4">
+      <div class="relative w-full lg:max-w-[400px]">
+        <label class="absolute -top-2 left-4 px-2 bg-white text-xs text-gray-600">{{ 'email' | translate }}</label>
+        <input 
+          disabled 
+          [value]="currentUser.email" 
+          class="border text-gray-500 cursor-not-allowed border-[#E6E4E1] w-full px-4 py-3 rounded-lg lg:rounded text-sm"
+          type="text">
+        <p class="text-xs mt-2 text-gray-600">
+          {{ 'change_mail_text' | translate }}
+          <a href="mailto:open-voice&#64;mail.ru" class="text-[#1570EF] hover:underline">open-voice&#64;mail.ru</a>
+        </p>
       </div>
-      <div>
-        <button class="border flex items-center gap-4 border-[#E6E4E1] w-full px-6 py-3"><i class='bx bx-pencil' ></i> {{ 'edit' | translate }}</button>
-      </div>
+      
+      <button class="flex items-center justify-center gap-2 border border-[#E6E4E1] px-4 py-3 text-sm rounded-lg hover:bg-gray-50 transition-colors duration-200 lg:w-auto w-full">
+        <i class='bx bx-pencil'></i>
+        <span>{{ 'edit' | translate }}</span>
+      </button>
     </div>
   </div>
-
 </div>

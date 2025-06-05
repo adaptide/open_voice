@@ -9,84 +9,83 @@
 <div *ngIf="!isFetching">
 
   <app-nav></app-nav>
-  <div class="flex pt-16 pb-6 flex-col items-center h-full bg-[#F4F3F2] gap-6">
-    <div class="flex flex-col">
-      <div class="flex items-center gap-2 text-[18px]">
+  <div class="flex flex-col items-center min-h-[calc(100vh-60px)] sm:min-h-[calc(100vh-85px)] bg-[#F4F3F2] gap-4 sm:gap-6 px-4 sm:px-0 pb-8">
+    <div class="flex flex-col w-full sm:w-auto mt-6">
+      <div class="flex items-center gap-2 text-[16px] sm:text-[18px]">
         <i class='bx bx-play' style="color: #59cbb7"></i>
         <p class="text-[#555555]">{{ 'listen_instruction' | translate }}</p>
       </div>
 
       <div class="flex flex-col mt-4 justify-center">
-        <p class="font-[500]">{{ 'project' | translate }}: <span class="italic font-normal">{{ text?.project ? text?.project : 'not_specified' | translate }}</span></p>
-        <p class="font-[500]">{{ 'category' | translate }}: <span class="italic font-normal">{{ text?.category ? text?.category : 'not_specified' | translate }}</span></p>
+        <p class="font-[500] text-[14px] sm:text-base">{{ 'project' | translate }}: <span class="italic font-normal">{{ text?.project ? text?.project : 'not_specified' | translate }}</span></p>
+        <p class="font-[500] text-[14px] sm:text-base">{{ 'category' | translate }}: <span class="italic font-normal">{{ text?.category ? text?.category : 'not_specified' | translate }}</span></p>
       </div>
     </div>
 
-
-    <div class="relative w-full flex justify-center overflow-x-hidden">
-      <div *ngIf="showText" class="text-screen text-center bg-[#FFFFFF] overflow-x-hidden w-[50%] h-[250px] flex justify-center items-center
+    <div class="relative w-full flex justify-center overflow-x-hidden px-4 sm:px-0">
+      <div *ngIf="showText" class="text-screen text-center bg-[#FFFFFF] overflow-x-hidden w-full sm:w-[50%] h-[200px] sm:h-[250px] flex justify-center items-center
        shadow-lg"
            @textSwitch>
-        <p *ngIf="!this.not_found" class="text-[24px]">{{ text?.text }}</p>
-        <p *ngIf="this.not_found" class="text-[24px]">{{ 'record_not_found' | translate }}</p>
+        <p *ngIf="!this.not_found" class="text-[18px] sm:text-[24px] px-4">{{ text?.text }}</p>
+        <p *ngIf="this.not_found" class="text-[18px] sm:text-[24px] px-4">{{ 'record_not_found' | translate }}</p>
       </div>
     </div>
 
-    <div *ngIf="!this.not_found" class="flex items-center justify-between font-[500] text-[#4A4A4A] gap-20 mt-4">
-      <div class="flex items-center font-[500] text-[#4A4A4A] gap-4">
-        <span *ngFor="let level of [1,2,3,4,5]" class="bg-[#FFFFFF] levels flex items-center justify-center w-10 h-10 p-2 rounded-[50%]"
+    <div *ngIf="!this.not_found" class="flex items-center justify-center font-[500] text-[#4A4A4A] gap-3 sm:gap-20 mt-2 sm:mt-4">
+      <div class="flex items-center font-[500] text-[#4A4A4A] gap-2 sm:gap-4">
+        <span *ngFor="let level of [1,2,3,4,5]" class="bg-[#FFFFFF] levels flex items-center justify-center w-8 h-8 sm:w-10 sm:h-10 p-2 rounded-[50%] text-[14px] sm:text-base"
               [class.bg-gray-300]="currentTextIndex !== level">
           {{ level }}
         </span>
       </div>
     </div>
 
-    <div class="w-full flex items-center justify-center mt-6 gap-10">
+    <div class="w-full flex items-center justify-center mt-4 sm:mt-6 gap-4 sm:gap-10">
       <a
         (click)="submitEvaluation(true)"
         [class.cursor-not-allowed]="isSendDisabled || this.not_found"
         [class.pointer-events-none]="isSendDisabled || this.not_found"
         [class.bg-[#DBDBDB]="this.not_found"
-        class="group cursor-pointer flex items-center gap-2 px-5 py-3 shadow-lg rounded-[30px] bg-white uppercase font-bold text-[#4A4A4A] hover:bg-[#59CBB7] hover:text-white transition-all duration-300">
-        <i class='bx bx-like text-[20px] text-[#CACACA] group-hover:text-white'></i>
+        class="group cursor-pointer flex items-center gap-2 px-4 sm:px-5 py-2 sm:py-3 shadow-lg rounded-[30px] bg-white uppercase font-bold text-[#4A4A4A] hover:bg-[#59CBB7] hover:text-white transition-all duration-300 text-[14px] sm:text-base">
+        <i class='bx bx-like text-[18px] sm:text-[20px] text-[#CACACA] group-hover:text-white'></i>
         <span>{{ 'yes' | translate }}</span>
       </a>
       <div
         [class.cursor-not-allowed]="this.not_found"
         [class.pointer-events-none]="this.not_found"
-        (click)="toggleListening()" class="bg-[#FFFFFF] cursor-pointer p-6 rounded-[50%] w-[80px] h-[80px] flex items-center justify-center
+        (click)="toggleListening()" class="bg-[#FFFFFF] cursor-pointer p-4 sm:p-6 rounded-[50%] w-[60px] h-[60px] sm:w-[80px] sm:h-[80px] flex items-center justify-center
                   shadow-[0_4px_10px_rgba(255,0,255,0.2),0_-4px_10px_rgba(0,0,255,0.2)]
                   hover:shadow-[0_5px_12px_rgba(255,0,255,0.3),0_-5px_12px_rgba(0,0,255,0.3)]
                   transition-shadow duration-300 ease-in-out">
-        <i *ngIf="!isListening" class='bx bx-play text-[42px]' style='color:#59cbb7'  ></i>
-        <i *ngIf="isListening" class="bx bx-stop text-[32px]" style="color:#ff4f5e"></i>
+        <i *ngIf="!isListening" class='bx bx-play text-[32px] sm:text-[42px]' style='color:#59cbb7'></i>
+        <i *ngIf="isListening" class="bx bx-stop text-[24px] sm:text-[32px]" style="color:#ff4f5e"></i>
       </div>
       <a
         (click)="submitEvaluation(false)"
         [class.cursor-not-allowed]="isSendDisabled || this.not_found"
         [class.pointer-events-none]="isSendDisabled || this.not_found"
-        class="group cursor-pointer flex items-center gap-2 px-5 py-3 shadow-lg rounded-[30px] bg-white uppercase font-bold text-[#4A4A4A] hover:bg-[#FF4F5E] hover:text-white transition-all duration-300">
-        <i class='bx bx-dislike text-[20px] text-[#CACACA] group-hover:text-white'></i>
+        class="group cursor-pointer flex items-center gap-2 px-4 sm:px-5 py-2 sm:py-3 shadow-lg rounded-[30px] bg-white uppercase font-bold text-[#4A4A4A] hover:bg-[#FF4F5E] hover:text-white transition-all duration-300 text-[14px] sm:text-base">
+        <i class='bx bx-dislike text-[18px] sm:text-[20px] text-[#CACACA] group-hover:text-white'></i>
         <span>{{ 'no' | translate }}</span>
       </a>
     </div>
 
-    <div class="w-full flex justify-between items-center px-40">
-      <div class="flex items-center gap-4">
-        <a [routerLink]="['/' + currentLanguage + '/guidelines']" class="flex cursor-pointer items-center gap-2 border font-[500] border-[#DBDBDB] rounded-[30px] px-8 py-3">
+    <div class="w-full flex flex-col sm:flex-row justify-between items-center gap-4 px-4 sm:px-40">
+      <div class="flex items-center gap-2 sm:gap-4 w-full sm:w-auto">
+        <a [routerLink]="['/' + currentLanguage + '/guidelines']" class="flex flex-1 sm:flex-auto cursor-pointer items-center justify-center gap-2 border font-[500] border-[#DBDBDB] rounded-[30px] px-4 sm:px-8 py-2 sm:py-3 text-[14px] sm:text-base">
           <i class='bx bx-help-circle font-medium'></i>
           {{ 'guide' | translate }}
         </a>
 
-        <a (click)="openReportModal()" class="flex cursor-pointer items-center gap-2 border font-[500] border-[#DBDBDB] rounded-[30px] px-8 py-3">
+        <a (click)="openReportModal()" class="flex flex-1 sm:flex-auto cursor-pointer items-center justify-center gap-2 border font-[500] border-[#DBDBDB] rounded-[30px] px-4 sm:px-8 py-2 sm:py-3 text-[14px] sm:text-base">
           {{ 'report' | translate }}
         </a>
       </div>
-      <div class="flex items-center gap-4">
+      <div class="flex items-center gap-2 sm:gap-4 w-full sm:w-auto">
         <a
           [class.cursor-not-allowed]="this.not_found"
           [class.pointer-events-none]="this.not_found"
-          (click)="skipText()" class="flex cursor-pointer font-[500] items-center gap-2 border border-[#DBDBDB] rounded-[30px] px-8 py-3">
+          (click)="skipText()" class="flex flex-1 sm:flex-auto cursor-pointer font-[500] items-center justify-center gap-2 border border-[#DBDBDB] rounded-[30px] px-4 sm:px-8 py-2 sm:py-3 text-[14px] sm:text-base">
           <i class="bx bx-chevrons-right font-medium"></i>
           {{ 'skip' | translate }}
         </a>
@@ -94,34 +93,33 @@
     </div>
   </div>
 
-  <div *ngIf="isModalOpen" class="fixed inset-0 flex items-center justify-center bg-black bg-opacity-50">
-    <div class="bg-white p-6 rounded-lg shadow-lg text-center">
-      <p class="text-lg font-semibold mb-4">{{ 'restart_question' | translate }}</p>
+  <div *ngIf="isModalOpen" class="fixed inset-0 flex items-center justify-center bg-black bg-opacity-50 px-4">
+    <div class="bg-white p-6 rounded-lg shadow-lg text-center w-full sm:w-auto max-w-[90%] sm:max-w-none">
+      <p class="text-base sm:text-lg font-semibold mb-4">{{ 'restart_question' | translate }}</p>
       <div class="flex justify-center gap-4">
-        <button (click)="restartLevels()" class="px-4 py-2 bg-blue-500 text-white rounded">{{ 'restart' | translate }}</button>
-        <button (click)="finishSession()" class="px-4 py-2 bg-gray-300 rounded">{{ 'finish' | translate }}</button>
+        <button (click)="restartLevels()" class="px-4 py-2 bg-blue-500 text-white rounded text-[14px] sm:text-base">{{ 'restart' | translate }}</button>
+        <button (click)="finishSession()" class="px-4 py-2 bg-gray-300 rounded text-[14px] sm:text-base">{{ 'finish' | translate }}</button>
       </div>
     </div>
   </div>
 
   <div *ngIf="isReportModalOpen" class="fixed inset-0 bg-blue-900 bg-opacity-50 flex items-start justify-center z-50 overflow-y-auto"
        (click)="closeReportModal()">
-
-    <div class="bg-white relative flex flex-col px-40 bg-black py-10 shadow-lg w-[800px] max-h-screen overflow-y-auto mt-10"
+    <div class="bg-white relative flex flex-col px-4 sm:px-40 bg-black py-6 sm:py-10 shadow-lg w-[95%] sm:w-[800px] max-h-screen overflow-y-auto mt-4 sm:mt-10 mx-4 sm:mx-0"
          (click)="$event.stopPropagation()">
-      <a href="#" class="cursor-pointer absolute top-8 text-[20px] right-8 text-[#DBDBDB]"><i class='bx bx-x'></i></a>
+      <a href="#" class="cursor-pointer absolute top-4 sm:top-8 text-[20px] right-4 sm:right-8 text-[#DBDBDB]"><i class='bx bx-x'></i></a>
 
       <div class="flex flex-col justify-center text-center w-full">
-        <h2 class="text-[30px] modal font-medium mb-2">Есептемені жіберу</h2>
-        <p class="text-gray-700 text-[20px]">Осы сөйлемде қандай қиындықтарға тап болдыңыз?</p>
+        <h2 class="text-[24px] sm:text-[30px] modal font-medium mb-2">Есептемені жіберу</h2>
+        <p class="text-gray-700 text-[16px] sm:text-[20px]">Осы сөйлемде қандай қиындықтарға тап болдыңыз?</p>
       </div>
 
       <form (ngSubmit)="submitReport()">
         <div class="flex flex-col gap-2 mt-4">
           <div class="flex items-start w-full justify-between border-b py-4" *ngFor="let reportType of reportTypes">
             <div class="flex flex-col justify-start">
-              <span>{{ 'REPORT_TYPES.' + reportType.key | translate }}</span>
-              <p *ngIf="reportType.description" class="italic text-[14px]">{{ reportType.description | translate }}</p>
+              <span class="text-[14px] sm:text-base">{{ 'REPORT_TYPES.' + reportType.key | translate }}</span>
+              <p *ngIf="reportType.description" class="italic text-[12px] sm:text-[14px]">{{ reportType.description | translate }}</p>
             </div>
             <input type="checkbox" [value]="reportType.value" (change)="toggleReport(reportType.value, $event)">
           </div>
@@ -129,7 +127,7 @@
           <div class="flex flex-col gap-2 w-full">
             <div class="flex items-start w-full justify-between py-4">
               <div class="flex flex-col justify-start">
-                <span>{{ 'other' | translate }}</span>
+                <span class="text-[14px] sm:text-base">{{ 'other' | translate }}</span>
               </div>
               <input type="checkbox" (change)="toggleOther($event)">
             </div>
@@ -137,15 +135,15 @@
             <textarea *ngIf="isOtherChecked"
                       [(ngModel)]="otherText"
                       [ngModelOptions]="{standalone: true}"
-                      class="w-full border border-gray-300 outline-none rounded-md p-2"
+                      class="w-full border border-gray-300 outline-none rounded-md p-2 text-[14px] sm:text-base"
                       placeholder="{{ 'comment' | translate }}">
-          </textarea>
+            </textarea>
           </div>
 
-          <div class="flex justify-center mt-10">
+          <div class="flex justify-center mt-6 sm:mt-10">
             <button type="submit"
                     [class.disabled]="!isSubmitEnabled"
-                    class="bg-[#59CBB7] uppercase py-4 px-14 text-white rounded-[30px] flex items-center gap-4"
+                    class="bg-[#59CBB7] uppercase py-3 sm:py-4 px-10 sm:px-14 text-white rounded-[30px] flex items-center gap-4 text-[14px] sm:text-base"
                     [disabled]="!isSubmitEnabled">
               Есеп <i class='bx bx-up-arrow-alt'></i>
             </button>
