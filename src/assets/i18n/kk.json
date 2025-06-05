@@ -257,5 +257,19 @@
       "START": "Үлес қосуды бастау",
       "LEARN_MORE": "Толығырақ білу"
     }
+  },
+
+  "auth": {
+    "email_placeholder": "Электрондық пошта мекенжайын енгізіңіз",
+    "password_placeholder": "Құпия сөзіңізді енгізіңіз",
+    "forgot_password": "Құпия сөзді ұмыттыңыз ба?",
+    "name_placeholder": "Атыңызды енгізіңіз",
+    "confirm_password_placeholder": "Құпия сөзді растаңыз",
+    "passwords_not_match": "Құпия сөздер сәйкес келмейді",
+    "have_account": "Сізде аккаунт бар ма?",
+    "no_account": "Сізде әлі аккаунт жоқ па?",
+    "name": "Аты",
+    "password": "Құпия сөз",
+    "confirm_password": "Құпия сөзді растау"
   }
 }

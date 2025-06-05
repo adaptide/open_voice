@@ -1,10 +1,11 @@
-import {Component, HostListener, inject, OnInit} from '@angular/core';
+import {Component, HostListener, inject, OnInit, OnDestroy} from '@angular/core';
 import {CommonModule} from "@angular/common";
 import {TranslatePipe, TranslateService} from "@ngx-translate/core";
-import {Router, RouterLink, RouterOutlet} from "@angular/router";
+import {Router, RouterLink, RouterOutlet, NavigationEnd} from "@angular/router";
 import {AuthService} from "../../services/auth.service";
 import {LanguageService} from "../../services/language.service";
 import {NavComponent} from "../nav/nav.component";
+import {Subscription, filter} from 'rxjs';
 
 const availableLanguages = [
   { code: 'kk', label: 'Қазақша' },
@@ -25,39 +26,68 @@ const availableLanguages = [
   styleUrl: './layout.component.scss'
 })
 
-export class LayoutComponent implements OnInit{
-
+export class LayoutComponent implements OnInit, OnDestroy {
   protected readonly availableLanguages = availableLanguages;
   isAuth = false;
   isDropdownOpen = false;
   openDropdown: string | null = null;
   tooltipVisible: boolean = true;
+  isMobileMenuOpen = false;
+  currentLanguage: string;
+  currentUser: any;
+  private routerSubscription: Subscription;
 
   constructor(
     private authService: AuthService,
     private router: Router,
-    private translateService: TranslateService
-  ) {}
-
-  languageService = inject(LanguageService);
-  currentUser: any;
-  currentLanguage: any;
-
-  ngOnInit() {
-    this.currentLanguage = this.translateService.currentLang;
-
-    this.authService.authStatus$.subscribe((status) => {
-      this.isAuth = status;
-
-      if (this.isAuth) {
-        this.authService.user().subscribe((data) => {
-          this.currentUser = data;
-          console.log(this.currentUser);
-        });
-      } else {
-        this.currentUser = null;
+    private translateService: TranslateService,
+    public languageService: LanguageService
+  ) {
+    this.currentLanguage = this.languageService.currentLang();
+    
+    // Подписываемся на изменения маршрута
+    this.routerSubscription = this.router.events.pipe(
+      filter(event => event instanceof NavigationEnd)
+    ).subscribe(() => {
+      // Закрываем мобильное меню при переходе на новую страницу
+      if (this.isMobileMenuOpen) {
+        this.closeMobileMenu();
       }
     });
+  }
+
+  ngOnInit() {
+    // Check if user has auth token
+    this.isAuth = this.authService['hasToken']();
+    if (this.isAuth) {
+      // Get user data
+      this.authService.user().subscribe(
+        (user: any) => {
+          this.currentUser = user;
+        }
+      );
+    }
+  }
+
+  ngOnDestroy() {
+    // Отписываемся от подписки при уничтожении компонента
+    if (this.routerSubscription) {
+      this.routerSubscription.unsubscribe();
+    }
+  }
+
+  toggleMobileMenu(): void {
+    this.isMobileMenuOpen = !this.isMobileMenuOpen;
+    this.updateBodyScroll();
+  }
+
+  closeMobileMenu(): void {
+    this.isMobileMenuOpen = false;
+    this.updateBodyScroll();
+  }
+
+  private updateBodyScroll(): void {
+    document.body.style.overflow = this.isMobileMenuOpen ? 'hidden' : '';
   }
 
   toggleDropdown(event: Event) {
@@ -73,13 +103,12 @@ export class LayoutComponent implements OnInit{
   switchLanguage(lang: string, event: Event) {
     event.stopPropagation();
     this.languageService.changeLanguage(lang);
-
-    const currentUrl = this.router.url;
-    const urlSegments = currentUrl.split('/');
-    urlSegments[1] = lang;
-    this.router.navigate(urlSegments);
-
     this.isDropdownOpen = false;
+    this.currentLanguage = lang;
+    // Перезагрузка текущего маршрута с новым языком
+    const currentUrl = this.router.url;
+    const newUrl = currentUrl.replace(/^\/[^\/]+/, '/' + lang);
+    this.router.navigateByUrl(newUrl);
   }
 
   @HostListener('document:click', ['$event'])
@@ -90,7 +119,7 @@ export class LayoutComponent implements OnInit{
 
   logout() {
     this.authService.logout().subscribe(() => {
-      this.router.navigate(['/' + this.currentLanguage + '/auth/login']);
+      this.router.navigate(['/', this.languageService.currentLang(), 'auth', 'login']);
     });
   }
 }

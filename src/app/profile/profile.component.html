@@ -1,31 +1,33 @@
 <div class="min-h-screen grid grid-rows-[1fr_auto]">
-  <div class="container flex flex-1">
-    <aside class="bg-[#F8F8F7] w-[25%] h-full min-h-screen p-6">
-      <ul class="nav-items">
+  <div class="container flex flex-col flex-1">
+    <!-- Navigation -->
+    <nav class="w-full p-4">
+      <ul class="nav-items flex flex-wrap justify-center gap-2">
         <li class="nav-item" routerLinkActive="active">
           <i class='bx bx-user'></i>
-          <a [routerLink]="['/', currentLang, 'profile', 'info']">Профиль</a>
+          <a [routerLink]="['/', currentLang, 'profile', 'info']">{{ 'profile' | translate }}</a>
         </li>
         <li class="nav-item" routerLinkActive="active">
           <i class='bx bx-camera'></i>
-          <a [routerLink]="['/', currentLang, 'profile', 'avatar']">Аватар</a>
+          <a [routerLink]="['/', currentLang, 'profile', 'avatar']">{{ 'avatar' | translate }}</a>
         </li>
         <li class="nav-item" routerLinkActive="active">
           <i class='bx bx-cog'></i>
-          <a [routerLink]="['/', currentLang, 'profile', 'settings']">Настройки</a>
+          <a [routerLink]="['/', currentLang, 'profile', 'settings']">{{ 'settings' | translate }}</a>
         </li>
         <li class="nav-item" routerLinkActive="active">
           <i class='bx bx-trash'></i>
-          <a [routerLink]="['/', currentLang, 'profile', 'delete']">Удалить профиль</a>
+          <a [routerLink]="['/', currentLang, 'profile', 'delete']">{{ 'delete_profile' | translate }}</a>
         </li>
         <li class="nav-item" routerLinkActive="active">
           <i class='bx bx-cloud-download'></i>
-          <a [routerLink]="['/', currentLang, 'profile', 'download']">Выгрузить мои данные</a>
+          <a [routerLink]="['/', currentLang, 'profile', 'download']">{{ 'download_my_data' | translate }}</a>
         </li>
       </ul>
-    </aside>
+    </nav>
 
-    <div class="flex w-[75%] py-10 pl-16 pr-44">
+    <!-- Main content -->
+    <div class="flex w-full p-4">
       <router-outlet></router-outlet>
     </div>
   </div>

@@ -1,31 +1,25 @@
 ul {
   display: flex;
-  flex-direction: column;
-  align-items: flex-end;
+  align-items: center;
 }
 
-.nav-item{
+.nav-item {
   border-radius: 40px;
-  margin: 10px;
   cursor: pointer;
   font-weight: bold;
-  padding: 15px 60px;
-  width: 200px;
   color: #959595;
+  @apply flex items-center justify-center gap-2 px-4 py-3;
 
   i {
     font-size: 20px;
     font-weight: 500;
   }
-
-  @apply flex items-center justify-center gap-2;
 }
 
-.active{
+.active {
   background-color: white;
   color: #000;
 }
-
 
 .footer {
   position: absolute;
@@ -36,4 +30,48 @@ ul {
   text-align: center;
   font-size: 14px;
   color: #959595;
+}
+
+.nav-items {
+  @apply flex flex-wrap gap-2;
+
+  .nav-item {
+    @apply flex items-center gap-2 rounded-lg cursor-pointer transition-all duration-300 py-2 px-3 text-sm;
+
+    i {
+      @apply text-lg text-gray-500;
+    }
+
+    a {
+      @apply text-gray-500;
+    }
+
+    &:hover {
+      @apply bg-gray-100;
+    }
+
+    &.active {
+      @apply bg-gray-100;
+
+      i, a {
+        @apply text-[#1570EF];
+      }
+    }
+  }
+}
+
+@media (max-width: 480px) {
+  .nav-items {
+    @apply justify-start;
+    overflow-x: auto;
+    -webkit-overflow-scrolling: touch;
+    
+    &::-webkit-scrollbar {
+      display: none;
+    }
+    
+    .nav-item {
+      @apply whitespace-nowrap min-w-fit;
+    }
+  }
 }

@@ -256,5 +256,19 @@
       "START": "Start Contributing",
       "LEARN_MORE": "Learn More"
     }
+  },
+
+  "auth": {
+    "email_placeholder": "Enter your email address",
+    "password_placeholder": "Enter your password",
+    "forgot_password": "Forgot password?",
+    "name_placeholder": "Enter your name",
+    "confirm_password_placeholder": "Confirm your password",
+    "passwords_not_match": "Passwords do not match",
+    "have_account": "Already have an account?",
+    "no_account": "Don't have an account yet?",
+    "name": "Name",
+    "password": "Password",
+    "confirm_password": "Confirm password"
   }
 }

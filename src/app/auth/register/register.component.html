@@ -1,51 +1,43 @@
-<div class="container">
-  <div class="login_form">
-    <form [formGroup]="form" (ngSubmit)="onSubmit()">
-      <div class="input_box">
-        <label for="name">Имя</label>
-        <input [class.error-border]="form.get('name')?.invalid && form.get('name')?.touched" type="text" formControlName="name" id="name" placeholder="Введите имя" required />
-        <div *ngIf="form.get('name')?.invalid && form.get('name')?.touched" class="text-left flex justify-start">
-          <p class="error-text" *ngIf="form.get('name')?.errors?.['required']">Поле обязательно для заполнения</p>
+<div class="auth-page-bg min-h-screen flex flex-col items-center justify-center pt-[100px] pb-10 bg-[#f8f8fb]">
+  <div class="auth-form-container w-full max-w-[400px] bg-white rounded-[16px] shadow-lg p-10 flex flex-col items-center">
+    <a [routerLink]="['/' + currentLanguage + '/']" class="mb-6 text-[30px] font-[400] text-black logo-link">Open Voice</a>
+    <form [formGroup]="form" (ngSubmit)="onSubmit()" class="w-full">
+      <div class="input_box mb-6">
+        <label for="name" class="block font-[500] mb-2">{{ 'auth.name' | translate }}</label>
+        <input [class.error-border]="form.get('name')?.invalid && form.get('name')?.touched" type="text" formControlName="name" id="name" placeholder="{{ 'auth.name_placeholder' | translate }}" required class="input-field" />
+        <div *ngIf="form.get('name')?.invalid && form.get('name')?.touched" class="error-text">
+          <p *ngIf="form.get('name')?.errors?.['required']">{{ 'required_field' | translate }}</p>
         </div>
       </div>
-
-      <div class="input_box">
-        <label for="email">Email</label>
-        <input [class.error-border]="form.get('email')?.invalid && form.get('email')?.touched" type="email" formControlName="email" id="email" placeholder="Введите адрес электронной почты" required />
-        <div *ngIf="form.get('email')?.invalid && form.get('email')?.touched" class="text-left flex justify-start">
-          <p class="error-text" *ngIf="form.get('email')?.errors?.['required']">Поле обязательно для заполнения</p>
-          <p class="error-text" *ngIf="form.get('email')?.errors?.['email']">Введите корректный email</p>
+      <div class="input_box mb-6">
+        <label for="email" class="block font-[500] mb-2">{{ 'email' | translate }}</label>
+        <input [class.error-border]="form.get('email')?.invalid && form.get('email')?.touched" type="email" formControlName="email" id="email" placeholder="{{ 'auth.email_placeholder' | translate }}" required class="input-field" />
+        <div *ngIf="form.get('email')?.invalid && form.get('email')?.touched" class="error-text">
+          <p *ngIf="form.get('email')?.errors?.['required']">{{ 'required_field' | translate }}</p>
         </div>
       </div>
-
-      <div class="input_box">
-        <div class="password_title">
-          <label for="password">Пароль</label>
-          <a href="#">Забыли пароль?</a>
+      <div class="input_box mb-6">
+        <div class="flex justify-between items-center mb-2">
+          <label for="password" class="font-[500]">{{ 'auth.password' | translate }}</label>
+          <a href="#" class="text-[14px] text-[#626cd6] hover:underline">{{ 'auth.forgot_password' | translate }}</a>
         </div>
-        <input [class.error-border]="form.get('password')?.invalid && form.get('password')?.touched" type="password" formControlName="password" id="password" placeholder="Введите ваш пароль" required />
-        <div *ngIf="form.get('password')?.invalid && form.get('password')?.touched" class="text-left flex justify-start">
-          <p class="error-text" *ngIf="form.get('password')?.errors?.['required']">Поле обязательно для заполнения</p>
-          <p class="error-text" *ngIf="form.get('password')?.errors?.['minlength']">Минимальная длина пароля 6 символов</p>
+        <input [class.error-border]="form.get('password')?.invalid && form.get('password')?.touched" type="password" formControlName="password" id="password" placeholder="{{ 'auth.password_placeholder' | translate }}" required class="input-field" />
+        <div *ngIf="form.get('password')?.invalid && form.get('password')?.touched" class="error-text">
+          <p *ngIf="form.get('password')?.errors?.['required']">{{ 'required_field' | translate }}</p>
         </div>
       </div>
-
-      <div class="input_box">
-        <div class="password_title">
-          <label for="password_confirmation">Подтвердите пароль</label>
-        </div>
-        <input [class.error-border]="form.get('password_confirmation')?.invalid && form.get('password_confirmation')?.touched" type="password" formControlName="password_confirmation" id="password_confirmation" placeholder="Подтвердите ваш пароль" required />
-        <div *ngIf="form.get('password_confirmation')?.invalid && form.get('password_confirmation')?.touched" class="text-left flex justify-start">
-          <p class="error-text" *ngIf="form.get('password_confirmation')?.errors?.['required']">Поле обязательно для заполнения</p>
-        </div>
-        <div *ngIf="form.errors?.['passwordMismatch'] && form.touched" class="text-left flex justify-start">
-          <p class="error-text">Пароли не совпадают</p>
+      <div class="input_box mb-6">
+        <label for="password_confirmation" class="block font-[500] mb-2">{{ 'auth.confirm_password' | translate }}</label>
+        <input [class.error-border]="form.get('password_confirmation')?.invalid && form.get('password_confirmation')?.touched" type="password" formControlName="password_confirmation" id="password_confirmation" placeholder="{{ 'auth.confirm_password_placeholder' | translate }}" required class="input-field" />
+        <div *ngIf="form.get('password_confirmation')?.invalid && form.get('password_confirmation')?.touched" class="error-text">
+          <p *ngIf="form.get('password_confirmation')?.errors?.['required']">{{ 'required_field' | translate }}</p>
         </div>
       </div>
-
-      <button type="submit">Регистрация</button>
-      <p class="sign_up">У вас уже есть аккаунт? <a [routerLink]="['/' + currentLanguage + '/auth/login']">Войти</a></p>
+      <div *ngIf="form.errors?.['passwordMismatch']" class="mb-4">
+        <p class="error-text">{{ 'auth.passwords_not_match' | translate }}</p>
+      </div>
+      <button type="submit" class="main-btn w-full">{{ 'register' | translate }}</button>
+      <p class="sign_up text-center mt-4">{{ 'auth.have_account' | translate }} <a [routerLink]="['/' + currentLanguage + '/auth/login']" class="text-[#626cd6] hover:underline font-[500]">{{ 'login' | translate }}</a></p>
     </form>
   </div>
-
 </div>

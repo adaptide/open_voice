@@ -263,5 +263,18 @@
     "FORGOT_PASSWORD": "Забыли пароль?",
     "CREATE_ACCOUNT": "Создать аккаунт",
     "JOIN_COMMUNITY": "Присоединяйтесь к нашему сообществу"
+  },
+  "auth": {
+    "email_placeholder": "Введите адрес электронной почты",
+    "password_placeholder": "Введите ваш пароль",
+    "forgot_password": "Забыли пароль?",
+    "name_placeholder": "Введите имя",
+    "confirm_password_placeholder": "Подтвердите ваш пароль",
+    "passwords_not_match": "Пароли не совпадают",
+    "have_account": "У вас уже есть аккаунт?",
+    "no_account": "У вас еще нет аккаунта?",
+    "name": "Имя",
+    "password": "Пароль",
+    "confirm_password": "Подтвердите пароль"
   }
 }

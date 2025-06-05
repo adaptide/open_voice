@@ -1,26 +1,22 @@
 import {Component, OnInit} from '@angular/core';
-import {AbstractControl, FormControl, FormGroup, ReactiveFormsModule, ValidatorFn, Validators} from "@angular/forms";
+import {AbstractControl, FormControl, FormGroup, ValidatorFn, Validators} from "@angular/forms";
 import {AuthService} from "../../services/auth.service";
-import {RouterLink} from "@angular/router";
+import {Router} from "@angular/router";
 import {TranslateService} from "@ngx-translate/core";
-import {NgIf} from "@angular/common";
 
 @Component({
   selector: 'app-register',
-  standalone: true,
-  imports: [
-    ReactiveFormsModule,
-    RouterLink,
-    NgIf
-  ],
   templateUrl: './register.component.html',
   styleUrl: './register.component.scss'
 })
 export class RegisterComponent implements OnInit {
-  constructor(private authService: AuthService, private translateService: TranslateService) {
-  }
+  constructor(
+    private authService: AuthService,
+    private router: Router,
+    private translateService: TranslateService
+  ) {}
 
-  currentLanguage: any;
+  currentLanguage: string = 'ru';
 
   passwordMatchValidator: ValidatorFn = (group: AbstractControl) => {
     const password = group.get('password')?.value;
@@ -47,9 +43,14 @@ export class RegisterComponent implements OnInit {
 
   onSubmit() {
     if (this.form.valid) {
-      this.authService.register(this.form.value).subscribe((data) => {
-        console.log(data);
-      });
+      this.authService.register(this.form.value).subscribe(
+        (response: any) => {
+          this.router.navigate(['/' + this.currentLanguage]);
+        },
+        (error) => {
+          console.error("Ошибка регистрации:", error);
+        }
+      );
     } else {
       console.log('Form is invalid');
       this.form.markAllAsTouched();
