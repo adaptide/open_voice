@@ -16,7 +16,10 @@
       <a [routerLink]="['/' + currentLanguage + '/about']" class="text-white hover:text-gray-300">{{ 'about' | translate }}</a>
       <a href="#" class="text-white hover:text-gray-300">{{ 'faq' | translate }}</a>
       <a [routerLink]="['/' + currentLanguage + '/guidelines']" class="text-white hover:text-gray-300">{{ 'documentations' | translate }}</a>
-      <a href="#" class="text-white hover:text-gray-300">{{ 'download' | translate }}</a>
+      <div class="flex flex-col gap-2">
+        <a [routerLink]="['/' + currentLanguage, 'organizations']" class="text-gray-600 hover:text-[#1B1AFF]">{{ 'ORGANIZATION.ORGANIZATIONS' | translate }}</a>
+        <a [routerLink]="['/' + currentLanguage, 'organizations', 'add']" class="text-gray-600 hover:text-[#1B1AFF]">{{ 'ORGANIZATION.FORM.ADD_ORGANIZATION' | translate }}</a>
+      </div>
     </div>
 
     <!-- Discord Section -->

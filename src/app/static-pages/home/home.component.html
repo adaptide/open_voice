@@ -63,22 +63,33 @@
     <div class="bg-white rounded-2xl shadow-sm p-8 max-w-6xl mx-auto">
       <div class="grid grid-cols-1 md:grid-cols-4 gap-8">
         <div class="text-center">
-          <div class="text-3xl font-bold text-[#1B1AFF] mb-2">10,000+</div>
+          <div class="text-3xl font-bold text-[#1B1AFF] mb-2">{{ statistics.recordings }}</div>
           <div class="text-gray-600">{{ 'HOME.STATS.RECORDINGS' | translate }}</div>
         </div>
         <div class="text-center">
-          <div class="text-3xl font-bold text-[#1B1AFF] mb-2">1,000+</div>
+          <div class="text-3xl font-bold text-[#1B1AFF] mb-2">{{ statistics.participants }}</div>
           <div class="text-gray-600">{{ 'HOME.STATS.PARTICIPANTS' | translate }}</div>
         </div>
         <div class="text-center">
-          <div class="text-3xl font-bold text-[#1B1AFF] mb-2">500+</div>
+          <div class="text-3xl font-bold text-[#1B1AFF] mb-2">{{ statistics.hours }}</div>
           <div class="text-gray-600">{{ 'HOME.STATS.HOURS' | translate }}</div>
         </div>
         <div class="text-center">
-          <div class="text-3xl font-bold text-[#1B1AFF] mb-2">50+</div>
+          <div class="text-3xl font-bold text-[#1B1AFF] mb-2">{{ statistics.organizations }}</div>
           <div class="text-gray-600">{{ 'HOME.STATS.ORGANIZATIONS' | translate }}</div>
         </div>
       </div>
+    </div>
+  </section>
+
+  <!-- Organization Form Section -->
+  <section class="container mx-auto px-4 md:px-6 lg:px-8 py-12">
+    <div class="bg-white rounded-2xl shadow-sm p-8 max-w-3xl mx-auto">
+      <div class="text-center mb-8">
+        <h2 class="text-2xl font-semibold mb-2">{{ 'HOME.ORGANIZATION_FORM.TITLE' | translate }}</h2>
+        <p class="text-gray-600">{{ 'HOME.ORGANIZATION_FORM.DESCRIPTION' | translate }}</p>
+      </div>
+      <app-organization-form></app-organization-form>
     </div>
   </section>
 

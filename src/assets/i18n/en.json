@@ -270,5 +270,32 @@
     "name": "Name",
     "password": "Password",
     "confirm_password": "Confirm password"
+  },
+  "ORGANIZATION": {
+    "FORM": {
+      "TITLE": "Add Your Organization",
+      "DESCRIPTION": "Share your organization's details with us and we'll get back to you soon.",
+      "NAME_LABEL": "Organization Name",
+      "NAME_PLACEHOLDER": "Enter your organization name",
+      "NAME_REQUIRED": "Organization name is required",
+      "EMAIL_LABEL": "Contact Email",
+      "EMAIL_PLACEHOLDER": "Enter your contact email",
+      "EMAIL_REQUIRED": "Email is required",
+      "EMAIL_INVALID": "Please enter a valid email address",
+      "PHONE_LABEL": "Phone Number",
+      "PHONE_PLACEHOLDER": "Enter your phone number",
+      "PHONE_REQUIRED": "Phone number is required",
+      "SUBMIT": "Submit",
+      "SUBMITTING": "Submitting...",
+      "SUCCESS": "Thank you! We'll review your submission and get back to you soon.",
+      "ERROR": "An error occurred. Please try again later.",
+      "ADD_ORGANIZATION": "Add Organization"
+    }
+  },
+
+  "FOOTER": {
+    "LINKS": {
+      "ADD_ORGANIZATION": "Add Organization"
+    }
   }
 }

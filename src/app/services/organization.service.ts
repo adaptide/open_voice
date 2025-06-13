@@ -19,4 +19,8 @@ export class OrganizationService {
   downloadProjectRecords(id: any) {
     return this.api.getBlob(`/projects/download-as-zip/${id}`);
   }
+
+  submitOrganization(data: { name: string; email: string; description: string }) {
+    return this.api.post('/organizations/submit', data);
+  }
 }

@@ -1,22 +1,22 @@
-import {Component, OnInit} from '@angular/core';
-import {TranslatePipe, TranslateService} from "@ngx-translate/core";
-import {Router, RouterLink} from "@angular/router";
+import { Component, OnInit } from '@angular/core';
+import { CommonModule } from '@angular/common';
+import { RouterLink } from '@angular/router';
+import { TranslateModule, TranslateService } from '@ngx-translate/core';
+import { OrganizationFormComponent } from '../organization-form/organization-form.component';
 
 @Component({
   selector: 'app-footer',
   standalone: true,
-  imports: [
-    TranslatePipe,
-    RouterLink
-  ],
+  imports: [CommonModule, RouterLink, TranslateModule, OrganizationFormComponent],
   templateUrl: './footer.component.html',
-  styleUrl: './footer.component.scss'
+  styleUrls: ['./footer.component.scss']
 })
 export class FooterComponent implements OnInit {
+  currentYear = new Date().getFullYear();
+  currentLanguage: string;
 
-  currentLanguage: any;
-
-  constructor(public translateService: TranslateService, private router: Router) {
+  constructor(private translateService: TranslateService) {
+    this.currentLanguage = this.translateService.currentLang;
   }
 
   ngOnInit() {

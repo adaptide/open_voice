@@ -45,8 +45,8 @@
       </div>
 
       <div class="relative tooltip-container">
-        <a href="#" class="cursor-pointer uppercase tooltip-link">{{ 'download' | translate }}</a>
-        <span class="tooltip">{{ 'tooltip_download' | translate }}</span>
+        <a [routerLink]="['/' + currentLanguage + '/organizations']" class="cursor-pointer uppercase tooltip-link">{{ 'organizations' | translate }}</a>
+        <span class="tooltip">{{ 'tooltip_organizations' | translate }}</span>
       </div>
 
       <div class="relative dropdown-container tooltip-container">
@@ -98,9 +98,9 @@
               <i class='bx bx-folder text-xl'></i>
               {{ 'organizations_list' | translate }}
             </a>
-            <a href="#" class="flex items-center gap-4 text-lg font-medium p-3 hover:bg-gray-100 rounded-lg">
-              <i class='bx bx-download text-xl'></i>
-              {{ 'download' | translate }}
+            <a [routerLink]="['/' + currentLanguage + '/organizations']" class="flex items-center gap-4 text-lg font-medium p-3 hover:bg-gray-100 rounded-lg">
+              <i class='bx bx-folder text-xl'></i>
+              {{ 'organizations' | translate }}
             </a>
             <a [routerLink]="['/' + currentLanguage + '/about']" class="flex items-center gap-4 text-lg font-medium p-3 hover:bg-gray-100 rounded-lg">
               <i class='bx bx-world text-xl'></i>

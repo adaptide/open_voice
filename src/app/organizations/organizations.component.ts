@@ -20,6 +20,8 @@ import {TranslateService} from "@ngx-translate/core";
 })
 export class OrganizationsComponent implements OnInit {
 
+  organizationProgress: { [key: number]: number } = {};
+
   constructor(private organizationService: OrganizationService, private authService: AuthService, private translateService: TranslateService) {
   }
 
@@ -50,6 +52,10 @@ export class OrganizationsComponent implements OnInit {
     this.organizationService.getOrganizationList().subscribe((data: any) => {
       this.organizations = data;
       this.filteredOrganizations = data;
+      // Generate random progress for each organization
+      this.organizations.forEach(org => {
+        this.organizationProgress[org.id] = Math.floor(Math.random() * 101);
+      });
     });
   }
 
