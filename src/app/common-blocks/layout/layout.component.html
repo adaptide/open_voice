@@ -1,18 +1,13 @@
 <div class="w-full relative">
-  <header class="py-3 sm:py-5 px-4 sm:px-8 md:px-20 lg:px-40 fixed w-full flex justify-between items-center z-20 bg-white shadow-sm">
+  <header *ngIf="!shouldHideMainHeader" class="py-3 sm:py-5 px-4 sm:px-8 md:px-20 lg:px-40 fixed w-full flex justify-between items-center z-30 bg-white shadow-sm">
     <div class="flex items-center gap-4 sm:gap-8">
       <div class="logo">
         <a [routerLink]="['/' + currentLanguage + '/']" class="text-[20px] sm:text-[30px] font-[400]">Open Voice</a>
       </div>
     </div>
 
-    <!-- Mobile menu button -->
-    <button class="lg:hidden flex items-center" (click)="toggleMobileMenu()">
-      <i class='bx bx-menu text-2xl'></i>
-    </button>
-
-    <!-- Desktop menu -->
-    <div class="hidden lg:flex items-center gap-10 relative font-[500] text-[14px]">
+    <!-- Desktop Navigation -->
+    <div class="hidden lg:flex items-center gap-4 sm:gap-8">
       <div class="relative dropdown-container tooltip-container">
         <a class="cursor-pointer flex items-center gap-4 uppercase tooltip-link" (click)="toggleNavDropdown('speak', $event)">{{ 'speak' | translate }}
           <svg width="10px" height="9px" viewBox="0 0 13 9" version="1.1" class=""><polygon points="11.7578125 0.75 12.5 1.5703125 6.25 8.25 0 1.5703125 0.7421875 0.75 6.25 6.609375"></polygon></svg>
@@ -35,7 +30,7 @@
       </div>
 
       <div class="relative dropdown-container tooltip-container">
-        <a class="cursor-pointer flex items-center gap-4 uppercase tooltip-link" (click)="toggleNavDropdown('record', $event)">{{ 'write' | translate }}
+        <a class="cursor-pointer flex items-center gap-4 uppercase tooltip-link" (click)="toggleNavDropdown('record', $event)">Сөйлеу
           <svg width="10px" height="9px" viewBox="0 0 13 9" version="1.1" class=""><polygon points="11.7578125 0.75 12.5 1.5703125 6.25 8.25 0 1.5703125 0.7421875 0.75 6.25 6.609375"></polygon></svg>
         </a>
         <span *ngIf="openDropdown != 'record'" class="tooltip">{{ 'tooltip_write' | translate }}</span>
@@ -45,7 +40,7 @@
       </div>
 
       <div class="relative tooltip-container">
-        <a [routerLink]="['/' + currentLanguage + '/organizations']" class="cursor-pointer uppercase tooltip-link">{{ 'organizations' | translate }}</a>
+        <a [routerLink]="['/' + currentLanguage + '/organizations']" class="cursor-pointer uppercase tooltip-link">Ұйымдар</a>
         <span class="tooltip">{{ 'tooltip_organizations' | translate }}</span>
       </div>
 
@@ -60,8 +55,13 @@
       </div>
     </div>
 
+    <!-- Mobile menu button -->
+    <button class="lg:hidden flex items-center" (click)="toggleMobileMenu()">
+      <i class='bx bx-menu text-2xl'></i>
+    </button>
+
     <!-- Mobile menu -->
-    <div *ngIf="isMobileMenuOpen" class="lg:hidden fixed inset-0 bg-white z-50">
+    <div *ngIf="isMobileMenuOpen && !shouldHideMainHeader" class="lg:hidden fixed inset-0 bg-white z-50">
       <div class="flex flex-col h-full">
         <div class="flex justify-between items-center p-4 border-b">
           <div class="logo">
@@ -104,8 +104,7 @@
             </a>
             <a [routerLink]="['/' + currentLanguage + '/about']" class="flex items-center gap-4 text-lg font-medium p-3 hover:bg-gray-100 rounded-lg">
               <i class='bx bx-world text-xl'></i>
-              {{ 'about' | translate }}
-            </a>
+              {{ 'about' | translate }}</a>
           </div>
         </div>
       </div>
@@ -192,7 +191,14 @@
     </div>
   </header>
 
-  <main class="pt-[60px] sm:pt-[85px] min-h-screen">
+  <app-nav *ngIf="shouldHideMainHeader"></app-nav>
+
+  <main class="min-h-screen" [ngClass]="{
+    'pt-[60px]': !shouldHideMainHeader,
+    'sm:pt-[85px]': !shouldHideMainHeader,
+    'pt-[64px]': shouldHideMainHeader,
+    'sm:pt-[80px]': shouldHideMainHeader
+  }">
     <div class="h-full">
       <router-outlet></router-outlet>
     </div>

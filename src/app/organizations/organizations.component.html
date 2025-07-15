@@ -1,13 +1,13 @@
 <div class="px-4 sm:px-8 md:px-20 lg:px-40 py-6 sm:py-10">
   <div class="flex flex-col sm:flex-row sm:justify-between gap-6 sm:gap-0">
     <div class="flex flex-col">
-      <h1 class="text-[24px] sm:text-[36px] font-[500]">Ваши организации</h1>
-      <p class="text-[16px] sm:text-[18px] mt-2">Список всех организаций.</p>
+      <h1 class="text-[24px] sm:text-[36px] font-[500]">{{ 'organizations.title' | translate }}</h1>
+      <p class="text-[16px] sm:text-[18px] mt-2">{{ 'organizations.subtitle' | translate }}</p>
     </div>
 
     <div *ngIf="isAuth" class="flex flex-col gap-4 items-start sm:items-end">
-      <span class="text-[14px] sm:text-base">Хотите добавить свою организацию ?</span>
-      <button class="py-2 px-6 sm:px-8 border border-black font-[600] rounded-[30px] w-fit text-[14px] sm:text-base">Добавить организацию</button>
+      <span class="text-[14px] sm:text-base">{{ 'organizations.add_question' | translate }}</span>
+      <button class="py-2 px-6 sm:px-8 border border-black font-[600] rounded-[30px] w-fit text-[14px] sm:text-base">{{ 'organizations.add_button' | translate }}</button>
     </div>
   </div>
 
@@ -15,7 +15,7 @@
     <div class="flex flex-col sm:flex-row sm:justify-between mt-8 sm:mt-10 gap-6 sm:gap-0">
       <div class="flex flex-col">
         <h1 class="text-[24px] sm:text-[36px] font-[500]">
-          Активные <span *ngIf="searchQuery">({{ filteredOrganizations.length }})</span>
+          {{ 'organizations.active' | translate }} <span *ngIf="searchQuery">({{ filteredOrganizations.length }})</span>
         </h1>
       </div>
 
@@ -24,14 +24,14 @@
         <input
           [(ngModel)]="searchQuery"
           (input)="onSearchChange()"
-          placeholder="Поиск"
+          [placeholder]="'organizations.search_placeholder' | translate"
           class="py-2 px-8 border bg-[#F9F9F9] font-[600] rounded-[30px] w-full sm:w-fit outline-none"
         />
       </div>
     </div>
 
     <div class="mt-6 sm:mt-8">
-      <p class="text-[16px] sm:text-[18px] w-full sm:w-[600px]">Просматривайте список всех организаций, включая ваши и те, к которым у вас есть доступ.</p>
+      <p class="text-[16px] sm:text-[18px] w-full sm:w-[600px]">{{ 'organizations.description' | translate }}</p>
     </div>
 
     <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-4 mt-6">
@@ -45,7 +45,7 @@
             <div>
               <div class="flex text-[12px] sm:text-[14px] items-center text-[#575757] gap-2">
                 <i class='bx bx-folder text-[16px] sm:text-[18px]'></i>
-                Проектов
+                {{ 'organizations.projects' | translate }}
               </div>
               <span class="number text-[22px] sm:text-[26px]">{{ organization.projects_count }}</span>
             </div>
@@ -53,7 +53,7 @@
             <div>
               <div class="flex text-[12px] sm:text-[14px] items-center text-[#575757] gap-2">
                 <svg class="DataItemHeadingIcon--tW9fa" width="13" height="13" viewBox="0 0 13 13" xmlns="http://www.w3.org/2000/svg"><path d="M7.9 8.5c-.2.1-.2.4 0 .5l.2.5-.2.5c-.2.1-.2.3 0 .5l.2.1.3-.1a1.4 1.4 0 0 0 0-2 .4.4 0 0 0-.5 0ZM9.4 7.2v.6a2.4 2.4 0 0 1 0 3.4v.5l.3.2s.2 0 .3-.2a3.2 3.2 0 0 0 0-4.5.4.4 0 0 0-.6 0Z"></path><path d="M11.6 6.1a.4.4 0 0 0-.6 0v.5a4 4 0 0 1 0 5.7v.6h.6a4.8 4.8 0 0 0 0-6.8ZM8 6.5c0-.3 0-.5-.3-.7l-1.1-.6C6 2.2 3.4.2.4 0 .2 0 0 .2 0 .4s.2.4.4.4c2.6 0 5 2.1 5.5 4.7l.1.3 1.3.7-1.2.7-.2.3-.2.7H3.2c-.2 0-.4.1-.4.4A3 3 0 0 0 4 10.9c-1 .8-2.2 1.3-3.5 1.3-.2 0-.4.2-.4.4s.2.4.4.4c1.6 0 3.2-.7 4.4-1.9v-.3l-.1-.3c-.6-.3-1-1-1-1.6H6c.1 0 .3 0 .3-.2l.3-1 1-.6c.3 0 .5-.3.5-.6Z"></path><path d="M3.1 5.5h.4l.1-.3V4.9a.4.4 0 0 0-.5 0H3l-.1.3v.2l.2.1Z"></path></svg>
-                Пользователей
+                {{ 'organizations.users' | translate }}
               </div>
               <span class="number text-[22px] sm:text-[26px]">{{ organization.members_count }}</span>
             </div>
@@ -63,7 +63,7 @@
             <div>
               <div class="flex text-[12px] sm:text-[14px] items-center text-[#575757] gap-2">
                 <i class='bx bx-timer text-[18px] sm:text-[20px]'></i>
-                Прогресс
+                {{ 'organizations.progress' | translate }}
               </div>
               <span class="number text-[22px] sm:text-[26px]">{{ organizationProgress[organization.id] }}%</span>
               <div class="bg-[#E7E5E2] w-full h-[8px] relative">
@@ -74,24 +74,24 @@
             <div>
               <div class="flex text-[12px] sm:text-[14px] items-center text-[#575757] gap-2">
                 <svg class="DataItemHeadingIcon--tW9fa" width="13" height="13" viewBox="0 0 13 13" xmlns="http://www.w3.org/2000/svg"><path d="M5.8 2.3h5.6a.4.4 0 1 0 0-.8H5.8a.4.4 0 1 0 0 .8ZM7.2 10.7H.4a.4.4 0 1 0 0 .8h6.8a.4.4 0 1 0 0-.8ZM.4 5.4H10a.4.4 0 1 0 0-.8H.4c-.2 0-.4.2-.4.4s.2.4.4.4ZM0 8c0 .2.2.4.4.4h12.2a.4.4 0 1 0 0-.8H.4c-.2 0-.4.2-.4.4ZM9.8 10.7H9a.4.4 0 1 0 0 .8h.7c.1.2.1.6-.1.8-.2.2-.2.4 0 .6l.2.1.3-.1c.6-.6.6-1.5 0-2.1l-.3-.1ZM12.3 10.7h-.9a.4.4 0 1 0 0 .8h.7c.2.2.2.6 0 .8-.2.2-.2.4 0 .6l.2.1.3-.1c.6-.6.5-1.5 0-2.1l-.3-.1ZM3.2 2.3H4a.4.4 0 1 0 0-.8h-.7a.7.7 0 0 1 .1-.8c.2-.2.2-.4 0-.6a.4.4 0 0 0-.5 0c-.6.6-.6 1.5 0 2.1l.3.1ZM.7 2.3h.9a.4.4 0 1 0 0-.8H.9a.7.7 0 0 1 0-.8c.2-.2.2-.4 0-.6a.4.4 0 0 0-.5 0C0 .7 0 1.6.4 2.2l.3.1Z"></path></svg>
-                Предложения
+                {{ 'organizations.suggestions' | translate }}
               </div>
               <span class="number text-[22px] sm:text-[26px]">{{ organization.texts_count }}</span>
             </div>
           </div>
         </div>
         <div class="w-full flex justify-center cursor-pointer p-3 sm:p-4 bg-[#F9F8F7] hover:bg-[#E7E5E2] transition-colors duration-300">
-          <button [routerLink]="['/' + currentLanguage + '/organizations', organization.id]" class="uppercase font-[600] text-[14px] sm:text-base">Подробнее</button>
+          <button [routerLink]="['/' + currentLanguage + '/organizations', organization.id]" class="uppercase font-[600] text-[14px] sm:text-base">{{ 'organizations.details' | translate }}</button>
         </div>
       </div>
     </div>
   </div>
 
   <div *ngIf="!isAuth" class="flex justify-center w-full mt-8 sm:mt-10">
-    <p class="text-[16px] sm:text-[18px] text-center">Чтобы увидеть список организаций, вам необходимо <a [routerLink]="['/' + currentLanguage + '/auth/login']" class="text-blue-500">авторизоваться</a>.</p>
+    <p class="text-[16px] sm:text-[18px] text-center">{{ 'organizations.auth_required' | translate }} <a [routerLink]="['/' + currentLanguage + '/auth/login']" class="text-blue-500">{{ 'organizations.login' | translate }}</a>.</p>
   </div>
 
   <div *ngIf="organizations.length === 0 && isAuth" class="flex justify-center mt-8 sm:mt-10">
-    <p class="text-[16px] sm:text-[18px] text-center">Нет доступных для просмотра организаций.</p>
+    <p class="text-[16px] sm:text-[18px] text-center">{{ 'organizations.no_organizations' | translate }}</p>
   </div>
 </div>

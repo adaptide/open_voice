@@ -102,18 +102,21 @@ export class ListenComponent implements OnInit {
         this.isFetching = false;
 
         if (!response || response.length === 0) {
-          this.not_found = 'Нет доступных записей';
-          console.log(this.not_found);
-          console.warn("Нет доступных записей");
+          this.not_found = true;
+          console.log('No records found:', this.not_found);
+          console.log('isSendDisabled:', this.isSendDisabled);
           this.text = null;
           return;
         }
 
+        this.not_found = false;
         this.availableTexts = [...response];
         this.getRandomText();
+        console.log('Records found:', this.not_found);
+        console.log('isSendDisabled:', this.isSendDisabled);
       },
       (error) => {
-        console.error("Ошибка запроса:", error);
+        console.error("Error fetching records:", error);
         this.isFetching = false;
       }
     );
@@ -157,6 +160,7 @@ export class ListenComponent implements OnInit {
     try {
       this.isListening = true;
       this.isSendDisabled = true;
+      console.log('Audio started - isSendDisabled:', this.isSendDisabled);
       this.audioUrl = this.text?.full_path || null;
       this.cdr.detectChanges();
 
@@ -167,11 +171,12 @@ export class ListenComponent implements OnInit {
         this.audio.onended = () => {
           this.isListening = false;
           this.isSendDisabled = false;
+          console.log('Audio ended - isSendDisabled:', this.isSendDisabled);
           this.cdr.detectChanges();
         };
       }
     } catch (error) {
-      console.error('Ошибка при начале записи:', error);
+      console.error('Error playing audio:', error);
     }
   }
 
@@ -188,6 +193,10 @@ export class ListenComponent implements OnInit {
     this.recordService.skipListenText(this.text.id).subscribe(() => {
       this.getRandomRecord();
     });
+  }
+
+  playNextRecord() {
+    this.getRandomRecord();
   }
 
   nextLevel() {

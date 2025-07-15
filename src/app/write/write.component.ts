@@ -5,6 +5,7 @@ import {NgClass, NgForOf, NgIf, NgStyle} from "@angular/common";
 import {RouterLink} from "@angular/router";
 import {WriteService} from "../services/write.service";
 import {FormControl, FormGroup, ReactiveFormsModule, Validators} from "@angular/forms";
+import { TranslateModule } from '@ngx-translate/core';
 
 const domains = [
   {id: 1, name: 'Сельское хозяство и продовольствие'},
@@ -32,7 +33,8 @@ const domains = [
     RouterLink,
     NgIf,
     NgForOf,
-    ReactiveFormsModule
+    ReactiveFormsModule,
+    TranslateModule
   ],
   templateUrl: './write.component.html',
   styleUrl: './write.component.scss'

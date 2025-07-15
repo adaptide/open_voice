@@ -5,6 +5,10 @@ import {ActivatedRoute, RouterLink} from "@angular/router";
 import {NgForOf, NgIf} from "@angular/common";
 import {FormsModule, ReactiveFormsModule} from "@angular/forms";
 import { saveAs } from 'file-saver';
+import { TranslateModule, TranslateService } from '@ngx-translate/core';
+import { CommonModule } from '@angular/common';
+import { HttpClient } from '@angular/common/http';
+import { environment } from '../../enviroments/environment';
 
 @Component({
   selector: 'app-show-organization',
@@ -14,9 +18,12 @@ import { saveAs } from 'file-saver';
     NgIf,
     ReactiveFormsModule,
     FormsModule,
+    TranslateModule,
+    CommonModule
   ],
   templateUrl: './show-organization.component.html',
-  styleUrl: './show-organization.component.scss'
+  styleUrl: './show-organization.component.scss',
+  providers: [TranslateService]
 })
 export class ShowOrganizationComponent implements OnInit {
 

@@ -5,6 +5,7 @@ import {FormsModule} from "@angular/forms";
 import {AuthService} from "../services/auth.service";
 import {RouterLink} from "@angular/router";
 import {TranslateService} from "@ngx-translate/core";
+import {TranslateModule} from '@ngx-translate/core';
 
 @Component({
   selector: 'app-organizations',
@@ -13,7 +14,8 @@ import {TranslateService} from "@ngx-translate/core";
     NgForOf,
     NgIf,
     FormsModule,
-    RouterLink
+    RouterLink,
+    TranslateModule
   ],
   templateUrl: './organizations.component.html',
   styleUrl: './organizations.component.scss'

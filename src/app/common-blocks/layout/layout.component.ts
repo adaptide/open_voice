@@ -20,7 +20,8 @@ const availableLanguages = [
     TranslatePipe,
     RouterLink,
     RouterOutlet,
-    CommonModule
+    CommonModule,
+    NavComponent
   ],
   templateUrl: './layout.component.html',
   styleUrl: './layout.component.scss'
@@ -36,6 +37,7 @@ export class LayoutComponent implements OnInit, OnDestroy {
   currentLanguage: string;
   currentUser: any;
   private routerSubscription: Subscription;
+  shouldHideMainHeader: boolean = false;
 
   constructor(
     private authService: AuthService,
@@ -48,11 +50,10 @@ export class LayoutComponent implements OnInit, OnDestroy {
     // Подписываемся на изменения маршрута
     this.routerSubscription = this.router.events.pipe(
       filter(event => event instanceof NavigationEnd)
-    ).subscribe(() => {
-      // Закрываем мобильное меню при переходе на новую страницу
-      if (this.isMobileMenuOpen) {
-        this.closeMobileMenu();
-      }
+    ).subscribe((event: NavigationEnd) => {
+      this.isMobileMenuOpen = false;
+      this.updateBodyScroll();
+      this.shouldHideMainHeader = this.isSpecialPage(event.urlAfterRedirects);
     });
   }
 
@@ -67,6 +68,7 @@ export class LayoutComponent implements OnInit, OnDestroy {
         }
       );
     }
+    this.shouldHideMainHeader = this.isSpecialPage(this.router.url);
   }
 
   ngOnDestroy() {
@@ -121,5 +123,9 @@ export class LayoutComponent implements OnInit, OnDestroy {
     this.authService.logout().subscribe(() => {
       this.router.navigate(['/', this.languageService.currentLang(), 'auth', 'login']);
     });
+  }
+
+  private isSpecialPage(url: string): boolean {
+    return url.includes('/listen') || url.includes('/speak') || url.includes('/write');
   }
 }

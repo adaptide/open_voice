@@ -3,7 +3,20 @@
   "email": "Email",
   "speak": "Speak",
   "listen": "Listen",
-  "write": "Write",
+  "write": {
+    "suggestions": {
+      "title": "What sentences can be added?",
+      "no_copyright": "No copyright restrictions",
+      "less_than_15_words": "Less than 15 words",
+      "correct_grammar": "Use correct grammar",
+      "correct_spelling": "Use correct spelling and punctuation",
+      "no_numbers": "No numbers or special characters",
+      "no_foreign_chars": "No foreign characters",
+      "include_quote": "Include appropriate quote",
+      "natural_conversational": "Ideally natural and conversational (sentence should be easy to read)"
+    }
+  },
+  "tooltip_organizations": "Organizations",
   "download": "Download",
   "about": "About",
   "skip": "Skip",
@@ -297,5 +310,23 @@
     "LINKS": {
       "ADD_ORGANIZATION": "Add Organization"
     }
+  },
+
+  "organizations": {
+    "title": "Your Organizations",
+    "subtitle": "List of all organizations.",
+    "add_question": "Want to add your organization?",
+    "add_button": "Add Organization",
+    "active": "Active",
+    "search_placeholder": "Search",
+    "description": "Browse the list of all organizations, including yours and those you have access to.",
+    "projects": "Projects",
+    "users": "Users",
+    "progress": "Progress",
+    "suggestions": "Suggestions",
+    "details": "Details",
+    "auth_required": "To see the list of organizations, you need to",
+    "login": "log in",
+    "no_organizations": "No organizations available for viewing."
   }
 }
